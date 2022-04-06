@@ -5,13 +5,20 @@ DTDL で定義された IoT Plug and Play モデルを元に、Azure IoT Hub と
 - 実行ファイル形式
 - Docker Image 形式  
 
-のどちらかを選択できる。  
+のどちらかを、実装する言語に応じて、選択できる。また、実行形式の場合は、通常のアプリケーション形式による実行、または、システムサービス形式による実行のいずれかを選択できる。  
 加えて、実装で使用するプログラミング言語も以下のどれかから選択可能である。  
 - C/C++
 - C#
 - Python
 
-C/C++ の場合で、かつ、実行ファイル形式の場合は、Azure IoT Device SDK for C、もしくは、Azure SDK for Embedded C の選択が可能である。 
+C/C++ の場合で、かつ、実行ファイル形式の場合は、Azure IoT Device SDK for C、もしくは、Azure SDK for Embedded C のいずれかを選択できる。
+選択する言語とアプリケーション形式の関係を表にまとめる。  
+
+|プログラミング言語|通常アプリ形式|システムサービス形式|Docker Image|備考|
+|-|-|-|-|-|
+|C/C++|〇|☓|☓|Azure IoT Device SDK for C または Azure SDK for Embedded Cのいずれかを選択可|
+|C#|〇|〇|〇||
+|Python|〇|☓|〇||
 
 Generator によって、以下の機能を実装するコードが生成される。 
 |機能|調整項目|ユーザーアプリ側で実装|
