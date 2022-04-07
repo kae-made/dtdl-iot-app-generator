@@ -17,7 +17,7 @@ C/C++ の場合で、かつ、実行ファイル形式の場合は、Azure IoT D
 |プログラミング言語|通常アプリ形式|システムサービス形式|Docker Image|備考|
 |-|-|-|-|-|
 |C/C++|〇|☓|☓|Azure IoT Device SDK for C または Azure SDK for Embedded Cのいずれかを選択可|
-|C#|〇|〇|〇||
+|C#|〇|〇|〇|通常アプリ形式の場合は.NET Coreを使ったデスクトップアプリ|
 |Python|〇|☓|〇||
 
 Generator によって、以下の機能を実装するコードが生成される。 
