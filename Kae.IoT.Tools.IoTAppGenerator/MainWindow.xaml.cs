@@ -38,6 +38,8 @@ namespace Kae.IoT.Tools.IoTAppGenerator
 
         private IoTPnPCodeGenerater generator;
 
+        private static readonly string iotFrameworkProjectFileName = "Kae.IoT.Framework.csproj";
+
         public MainWindow()
         {
             InitializeComponent();
@@ -102,7 +104,7 @@ namespace Kae.IoT.Tools.IoTAppGenerator
                 if (folderDialog.ShowDialog() == CommonFileDialogResult.Ok)
                 {
                     tbGenFolderPath.Text = folderDialog.FileName;
-                    cbLanguage.IsEnabled = true;
+                    buttonSelectIoTFWPath.IsEnabled = true;
                     buttonRefleshGeneratedViewer.IsEnabled = true;
                     RefleshGeneratedViewer();
                 }
@@ -110,12 +112,33 @@ namespace Kae.IoT.Tools.IoTAppGenerator
 
         }
 
+        private void buttonSelectIoTFWPath_Click(object sender, RoutedEventArgs e)
+        {
+            using (var folderDialog = new CommonOpenFileDialog() { IsFolderPicker = true })
+            {
+                if (folderDialog.ShowDialog() == CommonFileDialogResult.Ok)
+                {
+                    var projFilePath = System.IO.Path.Join(folderDialog.FileName, iotFrameworkProjectFileName);
+                    if (File.Exists(projFilePath))
+                    {
+                        tbIoTFWPath.Text = folderDialog.FileName;
+                        cbLanguage.IsEnabled = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show($"{iotFrameworkProjectFileName} dosen't exist in the selected folder!");
+                    }
+                }
+            }
+        }
+
         private async void buttonGenerate_Click(object sender, RoutedEventArgs e)
         {
-            var selectedLanguage = cbLanguage.SelectedItem.ToString();
+            var selectedLanguage = ((ComboBoxItem)cbLanguage.SelectedItem).Content.ToString();
+            var selectedExeType = cbGenKind.SelectedItem.ToString();
             var selectedInterface = lbInterfaces.SelectedItem.ToString();
-            var exeType = appKindsForLang[selectedLanguage][cbGenKind.SelectedItem.ToString()];
-            await generator.GenerateProject(selectedInterface, tbGenFolderPath.Text, tbAppName.Text, tbNamespace.Text, exeType);
+            var exeType = appKindsForLang[selectedLanguage][selectedExeType];
+            await generator.GenerateProject(selectedInterface, tbGenFolderPath.Text, tbAppName.Text, tbNamespace.Text, exeType, tbIoTFWPath.Text);
 
             RefleshGeneratedViewer();
         }
@@ -196,5 +219,6 @@ namespace Kae.IoT.Tools.IoTAppGenerator
                 Process.Start("notepad", ((TreeViewData)e.NewValue).FullPath);
             }
         }
+
     }
 }

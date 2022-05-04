@@ -62,7 +62,7 @@
             if (IsDeviceApp() || IsService())
             { #>
   <ItemGroup>
-    <ProjectReference Include="..\Kae.IoT.Framework\Kae.IoT.Framework.csproj" />
+    <ProjectReference Include="<#= iotFrameworkProjectPath #>\Kae.IoT.Framework.csproj" />
   </ItemGroup>
 
   <ItemGroup>

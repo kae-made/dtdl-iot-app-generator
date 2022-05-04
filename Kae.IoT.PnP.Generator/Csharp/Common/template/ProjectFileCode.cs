@@ -15,12 +15,14 @@ namespace Kae.IoT.PnP.Generator.Csharp.Common.template
         private string sdkName;
         private string targetFramework;
         private string outputType;
+        private string iotFrameworkProjectPath;
 
-        public ProjectFile(ExeType exeType,string configFileName, string userSecretsId = null)
+        public ProjectFile(ExeType exeType,string configFileName, string ioTFrameworkProjectPath = null, string userSecretsId = null)
         {
             this.exeType = exeType;
             this.configFileName = configFileName;
             this.userSecretsId = userSecretsId;
+            this.iotFrameworkProjectPath = ioTFrameworkProjectPath;
 
             switch (exeType)
             {

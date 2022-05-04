@@ -35,13 +35,16 @@ namespace Kae.IoT.PnP.Generator.Csharp
 
         protected static readonly string currentVersion = "0.0.1";
         protected string genTemplateFolderPath;
+        protected string iotFrameworkProjectPath;
 
         protected ExeType projectExeType;
 
-        public CSharpCodeGenerator(ExeType exeType)
+        public CSharpCodeGenerator(ExeType exeType, string iotFrameworkProjectPath)
         {
             Version = currentVersion;
             this.projectExeType = exeType;
+            this.iotFrameworkProjectPath = iotFrameworkProjectPath;
+
 
             string codeBase = Assembly.GetExecutingAssembly().Location;
             var dirInfo = new DirectoryInfo(codeBase);
@@ -87,7 +90,7 @@ namespace Kae.IoT.PnP.Generator.Csharp
         protected static readonly string RPDataTypeName = "AppDTReporetedProperties";
         protected static readonly string FWIoTDataTypeName = "IoTData";
 
-        public static CSharpCodeGenerator CreateGenerator(string genFolderPath, string appName, string nameSpace, string exeTypeParam)
+        public static CSharpCodeGenerator CreateGenerator(string genFolderPath, string modelId, string appName, string nameSpace, string exeTypeParam, string ioTFrameworkProjectPath)
         {
             ExeType exeType = ExeType.DeviceApp;
             switch (exeTypeParam.ToLower())
@@ -109,10 +112,10 @@ namespace Kae.IoT.PnP.Generator.Csharp
             {
                 case ExeType.DeviceApp:
                 case ExeType.Service:
-                    generator = new CsharpCodeGeneratorNonEdge(exeType) { GenFolderPath=genFolderPath, ProjectName=appName, NameSpace=nameSpace };
+                    generator = new CsharpCodeGeneratorNonEdge(exeType,  ioTFrameworkProjectPath) { GenFolderPath=genFolderPath, ProjectName=appName, NameSpace=nameSpace, ModelId=modelId };
                     break;
                 case ExeType.Edge:
-                    generator = new CsharpCodeGeneratorEdge() { GenFolderPath = genFolderPath, ProjectName = appName, NameSpace = nameSpace };
+                    generator = new CsharpCodeGeneratorEdge(ioTFrameworkProjectPath) { GenFolderPath = genFolderPath, ProjectName = appName, NameSpace = nameSpace, ModelId = modelId };
                     break;
             }
             return generator;
@@ -135,7 +138,7 @@ namespace Kae.IoT.PnP.Generator.Csharp
             }
             var csharpProjFileName = projName + csProjFileExtName;
 
-            var projFileGenerator = new ProjectFile(projectExeType, configFileName, UserSecretsIed);
+            var projFileGenerator = new ProjectFile(projectExeType, configFileName, iotFrameworkProjectPath, UserSecretsIed);
             var content = projFileGenerator.TransformText();
             await WriteToFileAsync(csharpProjFileName, content);
 

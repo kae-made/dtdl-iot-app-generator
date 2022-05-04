@@ -158,7 +158,7 @@ namespace Kae.IoT.PnP.Generator
             }
         }
 
-        public async Task GenerateProject(string interfaceName, string genFolderPath, string appName, string nameSpace, string exeType)
+        public async Task GenerateProject(string interfaceName, string genFolderPath, string appName, string nameSpace, string exeType, string ioTFrameworkProjectPath)
         {
             GElemDTInterfaceInfo itemInterface = null;
             foreach(var item in dtInterfaces.Keys)
@@ -169,13 +169,15 @@ namespace Kae.IoT.PnP.Generator
                     break;
                 }
             }
-            PickupTelemetries(itemInterface);
-            PickupProperties(itemInterface);
-            //Prototype();
-            PickupCommands(itemInterface);
-            var csharpGenerator = CSharpCodeGenerator.CreateGenerator(genFolderPath, appName, nameSpace, exeType);
-            await csharpGenerator.Generate(dtInterfaces, dtTelemetries, dtDesiredProperties, dtReporedProperties, dtSyncDirectMethods, dtAsyncDirectMethods);
-            
+            if (itemInterface != null)
+            {
+                PickupTelemetries(itemInterface);
+                PickupProperties(itemInterface);
+                //Prototype();
+                PickupCommands(itemInterface);
+                var csharpGenerator = CSharpCodeGenerator.CreateGenerator(genFolderPath, interfaceName, appName, nameSpace, exeType, ioTFrameworkProjectPath);
+                await csharpGenerator.Generate(dtInterfaces, dtTelemetries, dtDesiredProperties, dtReporedProperties, dtSyncDirectMethods, dtAsyncDirectMethods);
+            }
         }
 
         public void Prototype()

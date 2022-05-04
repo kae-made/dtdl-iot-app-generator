@@ -10,7 +10,7 @@ namespace Kae.IoT.PnP.Generator.Csharp
 {
     class CsharpCodeGeneratorNonEdge : CSharpCodeGenerator
     {
-        public CsharpCodeGeneratorNonEdge(ExeType exeType): base(exeType)
+        public CsharpCodeGeneratorNonEdge(ExeType exeType, string iotFWProjectPath) : base(exeType, iotFWProjectPath)
         {
         }
 

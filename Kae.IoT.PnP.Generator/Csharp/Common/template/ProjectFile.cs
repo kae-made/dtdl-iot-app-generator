@@ -164,8 +164,15 @@ namespace Kae.IoT.PnP.Generator.Csharp.Common.template
             
             #line default
             #line hidden
-            this.Write("  <ItemGroup>\r\n    <ProjectReference Include=\"..\\Kae.IoT.Framework\\Kae.IoT.Framew" +
-                    "ork.csproj\" />\r\n  </ItemGroup>\r\n\r\n  <ItemGroup>\r\n    <None Update=\"");
+            this.Write("  <ItemGroup>\r\n    <ProjectReference Include=\"");
+            
+            #line 65 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\ProjectFile.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(iotFrameworkProjectPath));
+            
+            #line default
+            #line hidden
+            this.Write("\\Kae.IoT.Framework.csproj\" />\r\n  </ItemGroup>\r\n\r\n  <ItemGroup>\r\n    <None Update=" +
+                    "\"");
             
             #line 69 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\ProjectFile.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(configFileName));

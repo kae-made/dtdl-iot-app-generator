@@ -41,7 +41,7 @@ namespace Kae.IoT.PnP.Generator.Csharp
         protected static readonly string[] origFilesFolderPath = new string[] { "Kae", "IoT", "PnP", "Generator", "Csharp", "EdgeModule", "template" };
         protected string origContentsBasePath = "";
 
-        public CsharpCodeGeneratorEdge() : base(ExeType.Edge)
+        public CsharpCodeGeneratorEdge(string iotFWProjectPath) : base(ExeType.Edge, iotFWProjectPath)
         {
             string codeBase = Assembly.GetExecutingAssembly().Location;
             var dirInfo = new DirectoryInfo(codeBase);
