@@ -1,0 +1,103 @@
+﻿<Window x:Class="Kae.IoT.Tools.IoTAppGenerator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kae.IoT.Tools.IoTAppGenerator"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+            <Button Name="buttonSelectDTDLFile" Content="Select" Margin="1" Click="buttonSelectDTDLFile_Click"/>
+            <TextBox Name="tbDTDLFileName" VerticalAlignment="Center" HorizontalAlignment="Stretch" Grid.Column="1"/>
+            <Button Name="buttonParse" Content="Parse" Grid.Column="2" Margin="1" IsEnabled="False" Click="buttonParse_Click"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="120"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <Border Margin="1">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Defined Interfaces : " Margin="1" VerticalAlignment="Bottom"/>
+                        <ListBox Name="lbInterfaces" Grid.Row="1" Margin="1" SelectionChanged="lbInterfaces_SelectionChanged"/>
+                    </Grid>
+                </Border>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.3*"/>
+                        <ColumnDefinition Width="0.7*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Button Name="buttonSelectGenFolder" Content="Select Folder" Grid.Row="0" Grid.Column="0" Margin="1" Click="buttonSelectGenFolder_Click" IsEnabled="False"/>
+                    <TextBox Name="tbGenFolderPath" Grid.Row="0" Grid.Column="1" Margin="1" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+                    <TextBlock Text="Language : " Grid.Row="3" Grid.Column="0" Margin="1" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                    <ComboBox Name="cbLanguage" Grid.Row="3" Grid.Column="1" Margin="1" SelectionChanged="cbLanguage_SelectionChanged" IsEnabled="False">
+                        <ComboBoxItem Content="C#"/>
+                        <ComboBoxItem Content="C/C++"/>
+                        <ComboBoxItem Content="Python"/>
+                    </ComboBox>
+                    <TextBlock Text="Kind : " Grid.Row="4" Grid.Column="0" Margin="1" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                    <ComboBox Name="cbGenKind" Grid.Row="4" Grid.Column="1" Margin="1" IsEnabled="False" SelectionChanged="cbGenKind_SelectionChanged">
+                    </ComboBox>
+                    <TextBlock Text="Application Name : " Grid.Row="1" Grid.Column="0" Margin="1" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                    <TextBox Name="tbAppName" Text="My Project" Grid.Row="1" Grid.Column="1" Margin="1" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+                    <TextBlock Text="Namespace : " Grid.Row="2" Grid.Column="0" Margin="1" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                    <TextBox Name="tbNamespace" Text="My.Gen" Grid.Row="2" Grid.Column="1" Margin="1" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+                </Grid>
+                <Button Name="buttonGenerate" Content="Generate" Margin="1" Grid.Row="2" IsEnabled="False" Click="buttonGenerate_Click"/>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="100"/>
+                </Grid.RowDefinitions>
+                <ScrollViewer Margin="1">
+                    <TextBox Name="tbIoTPnPDTDL"/>
+                </ScrollViewer>
+                <ScrollViewer Grid.Row="1" Margin="1">
+                    <TreeView Name="tvGenerated" Grid.Row="1" Margin="1" SelectedItemChanged="tvGenerated_SelectedItemChanged">
+                        <TreeView.ItemTemplate>
+                            <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+                                <TextBlock Text="{Binding Name}"/>
+                            </HierarchicalDataTemplate>
+                        </TreeView.ItemTemplate>
+                    </TreeView>
+                </ScrollViewer>
+                <Button Name="buttonRefleshGeneratedViewer" Grid.Row="1" Content="Reflesh" Margin="2" HorizontalAlignment="Right" VerticalAlignment="Top" Click="buttonRefleshGeneratedViewer_Click" IsEnabled="False" />
+                <ScrollViewer Margin="1" Grid.Row="2">
+                    <TextBlock Name="tbLog" />
+                </ScrollViewer>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

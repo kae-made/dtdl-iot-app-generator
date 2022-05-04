@@ -1,0 +1,40 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#		if (IsEdge()) { #>
+## For IoT Edge
+iot-edge:
+    "input-ports": ["port0","port1",...]
+    "model-id": "<#= modelId #>"
+#    "blob-on-edge-module-name": "Blob on Edge Module Name or IP Address of Edge Device(network is host mode)"
+#    "blob-on-edge-account-name": "<- Account Name of local blob service ->"
+#    "blob-on-edge-account-key": "<- Account Key of local blob service ->"
+<#		}
+        else
+        { #>
+iot-hub:
+## For SAS
+#    connection-string: "<- connection string ->"
+#    transport-type: "<- amqp | amqp_tcp_only | html | mqtt | mqtt_tcp_only ->"
+    model-id: "<#= modelId #>"
+## For X509
+#    root-cert-path: "<- root cert file path ->"
+#    intermediate1-path: "<- intermediate1 cert file path ->"
+#    intermediate2-path: "<- intermediate1 cert file path ->"
+#    device-pfx-path: "<- device pfx file path ->"
+#    device-pfx-password: "<- device pfx password ->"
+#    host-name: "<- Iot Hub URL ->"
+#    device-id: "<- Device Id ->"
+dps:
+#    global-endpoint: "<- DPS Global Endpoint ->"
+#    id-scope: "<- DPS ID Scope ->"
+#    registration-id: "<- DPS Registration Id ->"
+#    sas-key: "<- DPS Symetric Primery Key ->"
+#	 cert-path: "<- Certificate Path ->"
+#    cert-password: "<- Certificate Path ->"
+#    transport-type: "<- amqp | amqp_tcp_only | html | mqtt | mqtt_tcp_only ->"
+<#
+        }
+#>

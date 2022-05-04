@@ -1,0 +1,34 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+{
+    "$schema-version": "0.0.1",
+    "description": "This file is auto generated - '<#= Version #>'",
+    "image": {
+        "repository": "localhost:5000<#= nameSpace #>",
+        "tag": {
+            "version": "0.0.1",
+            "platforms": {
+<#
+            string postFix = ",";
+            foreach (var arch in dockerFileNames.Keys)
+            {
+                var fileName = dockerFileNames[arch];
+                if (arch == dockerFileNames.Keys.Last())
+                {
+                    postFix = "";
+                }
+#>
+                "<#= arch #>": "<#= fileName #>"<#= postFix #> 
+<#
+            }
+#>
+            }
+        },
+        "buildOptions": [],
+        "contextPath": "./"
+    },
+    "language": "csharp"
+}

@@ -1,0 +1,89 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<Project Sdk="<#= sdkName #>">
+
+  <PropertyGroup>
+<#
+            if (!string.IsNullOrEmpty(outputType))
+            { #>
+    <OutputType><#= outputType #></OutputType>
+<#          }
+#>
+    <TargetFramework><#= targetFramework #></TargetFramework>
+<#
+            if (!string.IsNullOrEmpty(userSecretsId))
+            { #>
+    <UserSecretsId><#= userSecretsId #></UserSecretsId>
+<#          }
+#>
+  </PropertyGroup>
+
+<#
+            if (IsEdge())
+            { #>  
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp3.1|AnyCPU'">
+        <TreatSpecificWarningsAsErrors />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectCapability Include="AzureIoTEdgeModule" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Azure.Devices.Client" Version="1.40.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+<#          }
+            if (IsDeviceApp())
+            { #>
+<#          }
+            if (IsService())
+            { #>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="5.0.1" />
+    <PackageReference Include="System.Diagnostics.PerformanceCounter" Version="6.0.1" />
+<#          }
+            if (IsEdge())
+            { #>
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.0" />
+    <PackageReference Include="System.Runtime.Loader" Version="4.3.0" />
+<#          }
+#>
+  </ItemGroup>
+
+<#
+            if (IsDeviceApp() || IsService())
+            { #>
+  <ItemGroup>
+    <ProjectReference Include="..\Kae.IoT.Framework\Kae.IoT.Framework.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="<#= configFileName #>">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+<#            }
+#>
+<#
+            if (IsEdge())
+            { #>
+  <ItemGroup>
+    <Reference Include="Kae.IoT.Framework">
+      <HintPath>Kae.IoT.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Kae.Utility.Logging">
+      <HintPath>Kae.Utility.Logging.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+<#          }
+#>
+
+</Project>

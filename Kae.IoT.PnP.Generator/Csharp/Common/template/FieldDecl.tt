@@ -1,0 +1,62 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="Microsoft.Azure.DigitalTwins.Parser" #>
+<#@ import namespace="Kae.IoT.PnP.Generator" #>
+<#@ import namespace="Kae.IoT.PnP.Generator.Csharp" #>
+<#
+            var schema = schemaInfo.Info;
+            if (schema is DTPrimitiveSchemaInfo)
+            {
+                var typeName = GetDataTypeProgramName((DTPrimitiveSchemaInfo)schema); #>
+<#= indent #>public <#= typeName #> <#= fieldName #> { get; set; }
+<#          }
+            else if (schema is DTComplexSchemaInfo)
+            {
+                if (schema is DTArrayInfo)
+                {
+                    var arraySchema = (DTArrayInfo)schema;
+                    var arrayElemSchema = arraySchema.ElementSchema;
+                    if (arrayElemSchema is DTPrimitiveSchemaInfo) {
+                        var typeName = GetDataTypeProgramName((DTPrimitiveSchemaInfo)schema); #>
+<#= indent #>public IList<<#= typeName #>> <#= fieldName #> { get; set; }
+<#                  }
+                    else { #>
+<#= indent #>Current supported array element schema is only primitive data type
+<#                  }
+                }
+                else if (schema is DTEnumInfo)
+                {
+                    var enumSchema = (DTEnumInfo)schema;
+                    var enumSchemaTypeName = fieldName + "DataType";
+                    var enumGen = CreateEnumTypeDecl(enumSchema, "public", enumSchemaTypeName, indent, indentUnit);
+                    var enumDeclContent = enumGen.TransformText();
+                    #>
+<#= enumDeclContent #>
+<#= indent #>public <#= enumSchemaTypeName #> <#= fieldName #> { get; set; }
+<#              }
+                else if (schema is DTMapInfo)
+                { #>
+<#= indent #>Map is not supported.  <#= schema.GetType().Name #> - <#= fieldName #>
+<#              }
+                else if (schema is DTObjectInfo)
+                {
+                    var objectSchema = (DTObjectInfo)schema;
+                    var objectSchemaTypeName = fieldName + "DataType";
+                    var objGen = CreateObjectTypeDecl(objectSchema, "public", objectSchemaTypeName, indent, indentUnit);
+                    var objDeclContent = objGen.TransformText();
+                    #>
+<#= objDeclContent #>
+<#= indent #>public <#= objectSchemaTypeName #> <#= fieldName #> { get; set; }
+<#              }
+                else
+                { #>
+<#= indent #>Bad Type <#= schema.GetType().Name #> - <#= fieldName #>
+<#              }
+            }
+            else
+            { #>
+<#= indent #>Bad Type <#= schema.GetType().Name #> - <#= fieldName #>
+<#          } #>

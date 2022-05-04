@@ -1,0 +1,190 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Azure.DigitalTwins.Parser" Version="3.12.7" />
+    <PackageReference Include="System.CodeDom" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Csharp\App\template\ProgramDeviceApp_cs.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ProgramDeviceApp_cs.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Csharp\App\template\ProgramService_cs.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ProgramService_cs.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Csharp\App\template\Worker_cs.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Worker_cs.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Csharp\Common\template\AppIoTData_cs.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AppIoTData_cs.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Csharp\Common\template\EnumTypeDecl.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>EnumTypeDecl.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Csharp\Common\template\FieldDecl.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FieldDecl.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Csharp\Common\template\IIoTApp_cs.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>IIoTApp_cs.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Csharp\Common\template\IoTAppCode_cs.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>IoTAppCode_cs.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Csharp\Common\template\IoTAppConfig_yaml.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>IoTAppConfig_yaml.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Csharp\Common\template\IoTApp_cs.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>IoTApp_cs.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Csharp\Common\template\MyAppConnector_cs.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MyAppConnector_cs.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Csharp\Common\template\ObjectTypeDecl.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ObjectTypeDecl.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Csharp\Common\template\ProjectFile.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ProjectFile.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Csharp\Edge\template\Dockerfile.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Dockerfile.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Csharp\Edge\template\Dockerfile_debug.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Dockerfile_debug.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Csharp\Edge\template\Module_json.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Module_json.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Csharp\Edge\template\ProgramEdge_cs.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ProgramEdge_cs.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Csharp\App\template\ProgramDeviceApp_cs.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>ProgramDeviceApp_cs.cs</LastGenOutput>
+    </None>
+    <None Update="Csharp\App\template\ProgramService_cs.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>ProgramService_cs.cs</LastGenOutput>
+    </None>
+    <None Update="Csharp\App\template\Worker_cs.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>Worker_cs.cs</LastGenOutput>
+    </None>
+    <None Update="Csharp\Common\template\AppIoTData_cs.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>AppIoTData_cs.cs</LastGenOutput>
+    </None>
+    <None Update="Csharp\Common\template\config.yaml.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Csharp\Common\template\csprojfile.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Csharp\Common\template\EnumTypeDecl.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>EnumTypeDecl.cs</LastGenOutput>
+    </None>
+    <None Update="Csharp\Common\template\FieldDecl.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>FieldDecl.cs</LastGenOutput>
+    </None>
+    <None Update="Csharp\Common\template\IIoTApp_cs.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>IIoTApp_cs.cs</LastGenOutput>
+    </None>
+    <None Update="Csharp\Common\template\IoTAppCode_cs.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>IoTAppCode_cs.cs</LastGenOutput>
+    </None>
+    <None Update="Csharp\Common\template\IoTAppConfig_yaml.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>IoTAppConfig_yaml.cs</LastGenOutput>
+      <CustomToolNamespace></CustomToolNamespace>
+    </None>
+    <None Update="Csharp\Common\template\IoTApp_cs.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>IoTApp_cs.cs</LastGenOutput>
+      <CustomToolNamespace></CustomToolNamespace>
+    </None>
+    <None Update="Csharp\Common\template\MyAppConnector_cs.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>MyAppConnector_cs.cs</LastGenOutput>
+      <CustomToolNamespace></CustomToolNamespace>
+    </None>
+    <None Update="Csharp\Common\template\ObjectTypeDecl.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>ObjectTypeDecl.cs</LastGenOutput>
+    </None>
+    <None Update="Csharp\Common\template\ProjectFile.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>ProjectFile.cs</LastGenOutput>
+    </None>
+    <None Update="Csharp\Edge\template\Dockerfile.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>Dockerfile.cs</LastGenOutput>
+    </None>
+    <None Update="Csharp\Edge\template\Dockerfile_debug.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>Dockerfile_debug.cs</LastGenOutput>
+    </None>
+    <None Update="Csharp\Edge\template\dockerignore.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Csharp\Edge\template\gitignore.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Csharp\Edge\template\Module_json.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>Module_json.cs</LastGenOutput>
+    </None>
+    <None Update="Csharp\Edge\template\ProgramEdge_cs.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>ProgramEdge_cs.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+</Project>

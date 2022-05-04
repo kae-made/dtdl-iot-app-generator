@@ -1,0 +1,153 @@
+{
+  "@context": "dtmi:dtdl:context;2",
+  "@id": "dtmi:kae:iot:Test;1",
+  "@type": "Interface",
+  "displayName": "IoTPnPTest",
+  "description": "Sample of IoT PnP Definition",
+  "contents": [
+    {
+      "@type": [
+        "Telemetry",
+        "Temperature"
+      ],
+      "name": "temperature",
+      "displayName": "Temperature",
+      "description": "Temperature in degrees Celsius.",
+      "schema": "double",
+      "unit": "degreeCelsius"
+    },
+    {
+      "@type": [
+        "Telemetry",
+        "RelativeHumidity"
+      ],
+      "name": "humidity",
+      "displayName": "Humidity",
+      "description": "Humidity in percent.",
+      "schema": "double",
+      "unit": "percent"
+    },
+    {
+      "@type": [
+        "Telemetry",
+        "Pressure"
+      ],
+      "name": "pressure",
+      "displayName": "Pressure",
+      "description": "Pressure in Hecto Pascal.",
+      "schema": "double",
+      "unit": "pascal"
+    },
+    {
+      "@type": "Telemetry",
+      "name": "acceleration",
+      "displayName": "Acceleration",
+      "description": "Acceleration of object",
+      "schema": {
+        "@type": "Object",
+        "fields": [
+          {
+            "name": "x",
+            "schema": "double"
+          },
+          {
+            "name": "y",
+            "schema": "double"
+          },
+          {
+            "name": "z",
+            "schema": "double"
+          }
+        ]
+      }
+    },
+    {
+      "@type": "Telemetry",
+      "name": "timestamp",
+      "displayName": "Timestamp",
+      "schema": "dateTime"
+    },
+    {
+      "@type": "Property",
+      "name": "intervalMsec",
+      "displayName": "Interval in milliseconds",
+      "schema": "integer",
+      "writable": true
+    },
+    {
+      "@type": "Property",
+      "name": "status",
+      "displayName": "Status",
+      "schema": {
+        "@type": "Enum",
+        "valueSchema": "string",
+        "enumValues": [
+          {
+            "name": "initialized",
+            "displayName": "Initialized",
+            "enumValue": "initialized"
+          },
+          {
+            "name": "running",
+            "displayName": "Running",
+            "enumValue": "running"
+          },
+          {
+            "name": "terminated",
+            "displayName": "Terminated",
+            "enumValue": "terminated"
+          },
+          {
+            "name": "configuring",
+            "displayName": "Configuring",
+            "enumValue": "configuring"
+          },
+          {
+            "name": "inTrouble",
+            "displayName": "In Trouble",
+            "enumValue": "introuble"
+          }
+        ]
+      }
+    },
+    {
+      "@type": "Property",
+      "name": "IntStatus",
+      "schema": {
+        "@type": "Enum",
+        "valueSchema": "integer",
+        "enumValues": [
+          {
+            "name": "On",
+            "enumValue": 1
+          },
+          {
+            "name": "Off",
+            "enumValue": 0
+          }
+        ]
+      }
+    },
+    {
+      "@type": "Command",
+      "name": "Hello",
+      "request": {
+        "name": "who",
+        "schema": "string"
+      },
+      "response": {
+        "name": "respond",
+        "schema": "string"
+      }
+    },
+    {
+      "@type": "Command",
+      "name": "order",
+      "request": {
+        "name": "command",
+        "schema": "string"
+      }
+    }
+
+  ]
+}

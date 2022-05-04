@@ -1,0 +1,36 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="Microsoft.Azure.DigitalTwins.Parser" #>
+<#@ import namespace="Kae.IoT.PnP.Generator" #>
+<#
+    var schema = schemaInfo.Info;
+    bool isNumericEnum = false;
+    if (schema.ValueSchema is DTIntegerInfo)
+    {
+        isNumericEnum = true;
+    } #>
+<#= indent #><#= scopeName #> enum <#= typeName #>
+<#= indent #>{
+<#                  
+    indent += indentUnit;
+    string prefix = "";
+    foreach(var enumValue in schema.EnumValues)
+    {
+        if (isNumericEnum)
+        { #>
+<#= indent #><#= prefix #><#= enumValue.Name #> = <#= enumValue.EnumValue #>
+<# 
+        }
+        else
+        { #>
+<#= indent #><#= prefix #><#= enumValue.Name #>
+<# 
+        }
+        prefix = ","; #>
+<# 
+    }
+    indent = indent.Substring(0, indent.Length - indentUnit.Length); #>
+<#= indent #>}

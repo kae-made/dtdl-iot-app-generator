@@ -1,0 +1,129 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
+using Kae.IoT.PnP.Generator.Csharp.App.template;
+using Kae.IoT.PnP.Generator.Csharp.Edge.template;
+
+namespace Kae.IoT.PnP.Generator.Csharp
+{
+    class CsharpCodeGeneratorEdge : CSharpCodeGenerator
+    {
+        private static IDictionary<string, string> dockerSdkImages = new Dictionary<string, string> {
+            { "amd64", "mcr.microsoft.com/dotnet/core/sdk:3.1-buster" },
+            {"arm32v7","mcr.microsoft.com/dotnet/core/sdk:3.1-buster-arm32v7" },
+            {"arm64v8","mcr.microsoft.com/dotnet/core/sdk:3.1-buster-arm64v8" },
+            {"windows-amd64","mcr.microsoft.com/dotnet/core/sdk:3.1-nanoserver-1809" }
+        };
+        private static IDictionary<string, string> dockerRuntimeImages = new Dictionary<string, string>
+        {
+            {"amd64","mcr.microsoft.com/dotnet/core/runtime:3.1-buster-slim" },
+            {"arm32v7","mcr.microsoft.com/dotnet/core/runtime:3.1-buster-slim-arm32v7" },
+            {"arm64v8","mcr.microsoft.com/dotnet/core/runtime:3.1-buster-slim-arm64v8" },
+            {"windows-amd64","mcr.microsoft.com/dotnet/core/runtime:3.1-nanoserver-1809" }
+        };
+        private static IEnumerable<string> archNames = new List<string> { "amd64", "arm32v7", "arm64v8", "windows-amd64" };
+        private static IEnumerable<string> archDebugNames = new List<string> { "amd64", "arm32v7", "arm64v8" };
+        private static IDictionary<string, bool> addUserForArch = new Dictionary<string, bool>
+        {
+            {"amd64",true },{"arm32v7",true},{"arm64v8",true },{"windows-amd64",false }
+        };
+
+        private static readonly string moduleJsonFileName = "module.json";
+        private static readonly string dockerignoreOrigFileName = "dockerignore.txt";
+        private static readonly string gitignoreOrigFileName = "gitignore.txt";
+        private static readonly string dockerignoreFileName = ".dockerignore";
+        private static readonly string gitignoreFileName = ".gitignore";
+
+        protected static readonly string[] origFilesFolderPath = new string[] { "Kae", "IoT", "PnP", "Generator", "Csharp", "EdgeModule", "template" };
+        protected string origContentsBasePath = "";
+
+        public CsharpCodeGeneratorEdge() : base(ExeType.Edge)
+        {
+            string codeBase = Assembly.GetExecutingAssembly().Location;
+            var dirInfo = new DirectoryInfo(codeBase);
+            genTemplateFolderPath = Path.Join(dirInfo.Parent.FullName, Path.Join(origFilesFolderPath));
+        }
+
+        protected override async Task CreateProjectEnvironment()
+        {
+            await CreateProjectEnvironmentCommon();
+
+            await CreateDockerItems();
+        }
+
+        protected async Task CreateDockerItems()
+        {
+            foreach (var arch in archNames)
+            {
+                var dockerFileGenerator = new Dockerfile(NameSpace, dockerSdkImages[arch], dockerRuntimeImages[arch], addUserForArch[arch]) { Version = currentVersion };
+                var content = dockerFileGenerator.TransformText();
+                var fileName = DockerFileName(arch);
+                await WriteToFileAsync(fileName, content);
+            }
+            foreach(var arch in archDebugNames)
+            {
+                var generator = new Dockerfile_debug(NameSpace, dockerSdkImages[arch], dockerRuntimeImages[arch]) { Version = currentVersion };
+                var content = generator.TransformText();
+                var fileName = DockerFileName(arch, true);
+                await WriteToFileAsync(fileName, content);
+            }
+            var dockerfileNames = new Dictionary<string, string>();
+            bool existed = true;
+            int index = 0;
+            while (existed)
+            {
+                if (index < archNames.Count())
+                {
+                    string archName = archNames.ElementAt(index);
+                    dockerfileNames.Add(archName, $"./{DockerFileName(archName)}");
+                }
+                if (index < archDebugNames.Count())
+                {
+                    string archName = archDebugNames.ElementAt(index);
+                    dockerfileNames.Add(archName, $"./{DockerFileName(archName, true)}");
+                }
+            }
+            var moduleGenerator = new Module_json(NameSpace, dockerfileNames) { Version = currentVersion };
+            var moduleContent = moduleGenerator.TransformText();
+            await WriteToFileAsync(moduleJsonFileName, moduleContent);
+
+            var origDockerignoreFileName = Path.Join(origContentsBasePath, dockerignoreOrigFileName);
+            await BuildProjectFileItem(ProjFolderPath, dockerignoreFileName, origDockerignoreFileName);
+
+            var origGitignoreFileName = Path.Join(origContentsBasePath, gitignoreOrigFileName);
+            await BuildProjectFileItem(ProjFolderPath, gitignoreFileName, gitignoreOrigFileName);
+        }
+
+        private void Prototype()
+        {
+            var dockerFileNames = new Dictionary<string, string>();
+            string postFix = ",";
+            foreach (var arch in dockerFileNames.Keys)
+            {
+                var fileName = dockerFileNames[arch];
+                if (arch == dockerFileNames.Keys.Last())
+                {
+                    postFix = "";
+                }
+            }
+        }
+
+        protected string DockerFileName(string archName, bool debug = false)
+        {
+            string fileName = $"Dockerfile.{archName}";
+            if (debug) fileName += ".debug";
+            return fileName;
+        }
+
+
+        protected override string GenerateProgramCSContent()
+        {
+            var generator = new ProgramEdge_cs(NameSpace) { Version = currentVersion };
+            return generator.TransformText();
+        }
+    }
+}
