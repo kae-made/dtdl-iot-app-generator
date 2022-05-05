@@ -28,17 +28,26 @@ namespace Kae.IoT.PnP.Generator.Csharp.Edge.template
         /// </summary>
         public virtual string TransformText()
         {
+            
+            #line 1 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Edge\template\Module_json.tt"
+
+  // Copyright (c) Knowledge & Experience. All rights reserved.
+  // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
+            
+            #line default
+            #line hidden
             this.Write("{\r\n    \"$schema-version\": \"0.0.1\",\r\n    \"description\": \"This file is auto generat" +
                     "ed - \'");
             
-            #line 8 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Edge\template\Module_json.tt"
+            #line 12 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Edge\template\Module_json.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Version));
             
             #line default
             #line hidden
             this.Write("\'\",\r\n    \"image\": {\r\n        \"repository\": \"localhost:5000/");
             
-            #line 10 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Edge\template\Module_json.tt"
+            #line 14 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Edge\template\Module_json.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(projectName));
             
             #line default
@@ -46,7 +55,7 @@ namespace Kae.IoT.PnP.Generator.Csharp.Edge.template
             this.Write("\",\r\n        \"tag\": {\r\n            \"version\": \"0.0.1\",\r\n            \"platforms\": {" +
                     "\r\n");
             
-            #line 14 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Edge\template\Module_json.tt"
+            #line 18 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Edge\template\Module_json.tt"
 
             string postFix = ",";
             foreach (var arch in dockerFileNames.Keys)
@@ -62,28 +71,28 @@ namespace Kae.IoT.PnP.Generator.Csharp.Edge.template
             #line hidden
             this.Write("                \"");
             
-            #line 24 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Edge\template\Module_json.tt"
+            #line 28 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Edge\template\Module_json.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(arch));
             
             #line default
             #line hidden
             this.Write("\": \"");
             
-            #line 24 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Edge\template\Module_json.tt"
+            #line 28 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Edge\template\Module_json.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(fileName));
             
             #line default
             #line hidden
             this.Write("\"");
             
-            #line 24 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Edge\template\Module_json.tt"
+            #line 28 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Edge\template\Module_json.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(postFix));
             
             #line default
             #line hidden
             this.Write(" \r\n");
             
-            #line 25 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Edge\template\Module_json.tt"
+            #line 29 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Edge\template\Module_json.tt"
 
             }
 

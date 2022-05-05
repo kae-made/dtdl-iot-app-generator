@@ -29,7 +29,16 @@ namespace Kae.IoT.PnP.Generator.Csharp.Common.template
         public virtual string TransformText()
         {
             
-            #line 6 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IoTAppConfig_yaml.tt"
+            #line 1 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IoTAppConfig_yaml.tt"
+
+  // Copyright (c) Knowledge & Experience. All rights reserved.
+  // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
+            
+            #line default
+            #line hidden
+            
+            #line 10 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IoTAppConfig_yaml.tt"
 		if (IsEdge()) { 
             
             #line default
@@ -37,14 +46,18 @@ namespace Kae.IoT.PnP.Generator.Csharp.Common.template
             this.Write("## For IoT Edge\r\niot-edge:\r\n    \"input-ports\": [\"port0\",\"port1\",...]\r\n    \"model-" +
                     "id\": \"");
             
-            #line 10 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IoTAppConfig_yaml.tt"
+            #line 14 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IoTAppConfig_yaml.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(modelId));
             
             #line default
             #line hidden
-            this.Write("\"\r\n");
+            this.Write(@"""
+#    ""blob-on-edge-module-name"": ""Blob on Edge Module Name or IP Address of Edge Device(network is host mode)""
+#    ""blob-on-edge-account-name"": ""<- Account Name of local blob service ->""
+#    ""blob-on-edge-account-key"": ""<- Account Key of local blob service ->""
+");
             
-            #line 11 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IoTAppConfig_yaml.tt"
+            #line 18 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IoTAppConfig_yaml.tt"
 		}
         else
         { 
@@ -55,7 +68,7 @@ namespace Kae.IoT.PnP.Generator.Csharp.Common.template
                     "nsport-type: \"<- amqp | amqp_tcp_only | html | mqtt | mqtt_tcp_only ->\"\r\n    mod" +
                     "el-id: \"");
             
-            #line 18 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IoTAppConfig_yaml.tt"
+            #line 25 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IoTAppConfig_yaml.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(modelId));
             
             #line default
@@ -79,7 +92,7 @@ dps:
 #    transport-type: ""<- amqp | amqp_tcp_only | html | mqtt | mqtt_tcp_only ->""
 ");
             
-            #line 35 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IoTAppConfig_yaml.tt"
+            #line 42 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IoTAppConfig_yaml.tt"
 
         }
 

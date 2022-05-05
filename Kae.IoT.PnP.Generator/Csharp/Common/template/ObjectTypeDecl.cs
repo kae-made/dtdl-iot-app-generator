@@ -31,34 +31,43 @@ namespace Kae.IoT.PnP.Generator.Csharp.Common.template
         public virtual string TransformText()
         {
             
-            #line 8 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\ObjectTypeDecl.tt"
+            #line 1 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\ObjectTypeDecl.tt"
+
+  // Copyright (c) Knowledge & Experience. All rights reserved.
+  // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
+            
+            #line default
+            #line hidden
+            
+            #line 12 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\ObjectTypeDecl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indent));
             
             #line default
             #line hidden
             
-            #line 8 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\ObjectTypeDecl.tt"
+            #line 12 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\ObjectTypeDecl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(scopeName));
             
             #line default
             #line hidden
             this.Write(" class ");
             
-            #line 8 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\ObjectTypeDecl.tt"
+            #line 12 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\ObjectTypeDecl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(typeName));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 9 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\ObjectTypeDecl.tt"
+            #line 13 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\ObjectTypeDecl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indent));
             
             #line default
             #line hidden
             this.Write("{\r\n");
             
-            #line 10 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\ObjectTypeDecl.tt"
+            #line 14 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\ObjectTypeDecl.tt"
   
     var schema = schemaInfo.Info;
     indent += indentUnit;
@@ -71,14 +80,14 @@ namespace Kae.IoT.PnP.Generator.Csharp.Common.template
             #line default
             #line hidden
             
-            #line 18 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\ObjectTypeDecl.tt"
+            #line 22 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\ObjectTypeDecl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(fieldDeclContent));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 19 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\ObjectTypeDecl.tt"
+            #line 23 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\ObjectTypeDecl.tt"
  
     }
     indent = indent.Substring(0, indent.Length - indentUnit.Length); 
@@ -86,7 +95,7 @@ namespace Kae.IoT.PnP.Generator.Csharp.Common.template
             #line default
             #line hidden
             
-            #line 22 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\ObjectTypeDecl.tt"
+            #line 26 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\ObjectTypeDecl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indent));
             
             #line default

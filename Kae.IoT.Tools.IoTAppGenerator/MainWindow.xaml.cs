@@ -1,4 +1,6 @@
-﻿using Kae.IoT.PnP.Generator;
+﻿// Copyright (c) Knowledge & Experience. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+using Kae.IoT.PnP.Generator;
 using Microsoft.Win32;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using System;

@@ -32,7 +32,16 @@ namespace Kae.IoT.PnP.Generator.Csharp.Common.template
         public virtual string TransformText()
         {
             
-            #line 9 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
+            #line 1 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
+
+  // Copyright (c) Knowledge & Experience. All rights reserved.
+  // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
+            
+            #line default
+            #line hidden
+            
+            #line 13 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
 
             var schema = schemaInfo.Info;
             if (schema is DTPrimitiveSchemaInfo)
@@ -42,28 +51,28 @@ namespace Kae.IoT.PnP.Generator.Csharp.Common.template
             #line default
             #line hidden
             
-            #line 14 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
+            #line 18 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indent));
             
             #line default
             #line hidden
             this.Write("public ");
             
-            #line 14 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
+            #line 18 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(typeName));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 14 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
+            #line 18 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(fieldName));
             
             #line default
             #line hidden
             this.Write(" { get; set; }\r\n");
             
-            #line 15 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
+            #line 19 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
           }
             else if (schema is DTComplexSchemaInfo)
             {
@@ -77,42 +86,42 @@ namespace Kae.IoT.PnP.Generator.Csharp.Common.template
             #line default
             #line hidden
             
-            #line 24 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
+            #line 28 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indent));
             
             #line default
             #line hidden
             this.Write("public IList<");
             
-            #line 24 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
+            #line 28 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(typeName));
             
             #line default
             #line hidden
             this.Write("> ");
             
-            #line 24 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
+            #line 28 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(fieldName));
             
             #line default
             #line hidden
             this.Write(" { get; set; }\r\n");
             
-            #line 25 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
+            #line 29 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
                   }
                     else { 
             
             #line default
             #line hidden
             
-            #line 27 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
+            #line 31 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indent));
             
             #line default
             #line hidden
             this.Write("Current supported array element schema is only primitive data type\r\n");
             
-            #line 28 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
+            #line 32 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
                   }
                 }
                 else if (schema is DTEnumInfo)
@@ -126,35 +135,35 @@ namespace Kae.IoT.PnP.Generator.Csharp.Common.template
             #line default
             #line hidden
             
-            #line 37 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
+            #line 41 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(enumDeclContent));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 38 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
+            #line 42 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indent));
             
             #line default
             #line hidden
             this.Write("public ");
             
-            #line 38 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
+            #line 42 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(enumSchemaTypeName));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 38 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
+            #line 42 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(fieldName));
             
             #line default
             #line hidden
             this.Write(" { get; set; }\r\n");
             
-            #line 39 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
+            #line 43 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
               }
                 else if (schema is DTMapInfo)
                 { 
@@ -162,28 +171,28 @@ namespace Kae.IoT.PnP.Generator.Csharp.Common.template
             #line default
             #line hidden
             
-            #line 42 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
+            #line 46 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indent));
             
             #line default
             #line hidden
             this.Write("Map is not supported.  ");
             
-            #line 42 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
+            #line 46 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(schema.GetType().Name));
             
             #line default
             #line hidden
             this.Write(" - ");
             
-            #line 42 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
+            #line 46 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(fieldName));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 43 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
+            #line 47 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
               }
                 else if (schema is DTObjectInfo)
                 {
@@ -196,35 +205,35 @@ namespace Kae.IoT.PnP.Generator.Csharp.Common.template
             #line default
             #line hidden
             
-            #line 51 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
+            #line 55 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(objDeclContent));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 52 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
+            #line 56 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indent));
             
             #line default
             #line hidden
             this.Write("public ");
             
-            #line 52 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
+            #line 56 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(objectSchemaTypeName));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 52 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
+            #line 56 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(fieldName));
             
             #line default
             #line hidden
             this.Write(" { get; set; }\r\n");
             
-            #line 53 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
+            #line 57 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
               }
                 else
                 { 
@@ -232,28 +241,28 @@ namespace Kae.IoT.PnP.Generator.Csharp.Common.template
             #line default
             #line hidden
             
-            #line 56 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
+            #line 60 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indent));
             
             #line default
             #line hidden
             this.Write("Bad Type ");
             
-            #line 56 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
+            #line 60 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(schema.GetType().Name));
             
             #line default
             #line hidden
             this.Write(" - ");
             
-            #line 56 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
+            #line 60 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(fieldName));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 57 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
+            #line 61 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
               }
             }
             else
@@ -262,28 +271,28 @@ namespace Kae.IoT.PnP.Generator.Csharp.Common.template
             #line default
             #line hidden
             
-            #line 61 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
+            #line 65 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indent));
             
             #line default
             #line hidden
             this.Write("Bad Type ");
             
-            #line 61 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
+            #line 65 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(schema.GetType().Name));
             
             #line default
             #line hidden
             this.Write(" - ");
             
-            #line 61 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
+            #line 65 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(fieldName));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 62 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
+            #line 66 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\FieldDecl.tt"
           } 
             
             #line default

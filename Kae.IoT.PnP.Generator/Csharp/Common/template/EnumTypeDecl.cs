@@ -31,7 +31,16 @@ namespace Kae.IoT.PnP.Generator.Csharp.Common.template
         public virtual string TransformText()
         {
             
-            #line 8 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\EnumTypeDecl.tt"
+            #line 1 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\EnumTypeDecl.tt"
+
+  // Copyright (c) Knowledge & Experience. All rights reserved.
+  // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
+            
+            #line default
+            #line hidden
+            
+            #line 12 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\EnumTypeDecl.tt"
 
     var schema = schemaInfo.Info;
     bool isNumericEnum = false;
@@ -43,34 +52,34 @@ namespace Kae.IoT.PnP.Generator.Csharp.Common.template
             #line default
             #line hidden
             
-            #line 15 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\EnumTypeDecl.tt"
+            #line 19 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\EnumTypeDecl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indent));
             
             #line default
             #line hidden
             
-            #line 15 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\EnumTypeDecl.tt"
+            #line 19 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\EnumTypeDecl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(scopeName));
             
             #line default
             #line hidden
             this.Write(" enum ");
             
-            #line 15 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\EnumTypeDecl.tt"
+            #line 19 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\EnumTypeDecl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(typeName));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 16 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\EnumTypeDecl.tt"
+            #line 20 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\EnumTypeDecl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indent));
             
             #line default
             #line hidden
             this.Write("{\r\n");
             
-            #line 17 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\EnumTypeDecl.tt"
+            #line 21 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\EnumTypeDecl.tt"
                   
     indent += indentUnit;
     string prefix = "";
@@ -82,33 +91,33 @@ namespace Kae.IoT.PnP.Generator.Csharp.Common.template
             #line default
             #line hidden
             
-            #line 24 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\EnumTypeDecl.tt"
+            #line 28 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\EnumTypeDecl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indent));
             
             #line default
             #line hidden
             
-            #line 24 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\EnumTypeDecl.tt"
+            #line 28 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\EnumTypeDecl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(prefix));
             
             #line default
             #line hidden
             
-            #line 24 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\EnumTypeDecl.tt"
+            #line 28 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\EnumTypeDecl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(enumValue.Name));
             
             #line default
             #line hidden
             this.Write(" = ");
             
-            #line 24 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\EnumTypeDecl.tt"
+            #line 28 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\EnumTypeDecl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(enumValue.EnumValue));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 25 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\EnumTypeDecl.tt"
+            #line 29 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\EnumTypeDecl.tt"
  
         }
         else
@@ -117,26 +126,26 @@ namespace Kae.IoT.PnP.Generator.Csharp.Common.template
             #line default
             #line hidden
             
-            #line 29 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\EnumTypeDecl.tt"
+            #line 33 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\EnumTypeDecl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indent));
             
             #line default
             #line hidden
             
-            #line 29 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\EnumTypeDecl.tt"
+            #line 33 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\EnumTypeDecl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(prefix));
             
             #line default
             #line hidden
             
-            #line 29 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\EnumTypeDecl.tt"
+            #line 33 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\EnumTypeDecl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(enumValue.Name));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 30 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\EnumTypeDecl.tt"
+            #line 34 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\EnumTypeDecl.tt"
  
         }
         prefix = ","; 
@@ -144,7 +153,7 @@ namespace Kae.IoT.PnP.Generator.Csharp.Common.template
             #line default
             #line hidden
             
-            #line 33 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\EnumTypeDecl.tt"
+            #line 37 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\EnumTypeDecl.tt"
  
     }
     indent = indent.Substring(0, indent.Length - indentUnit.Length); 
@@ -152,7 +161,7 @@ namespace Kae.IoT.PnP.Generator.Csharp.Common.template
             #line default
             #line hidden
             
-            #line 36 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\EnumTypeDecl.tt"
+            #line 40 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\EnumTypeDecl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indent));
             
             #line default
