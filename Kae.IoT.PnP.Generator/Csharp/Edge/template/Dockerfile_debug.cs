@@ -67,11 +67,11 @@ FROM ");
                     "d-env /app/out ./\r\n\r\nENTRYPOINT [\"dotnet\", \"");
             
             #line 38 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Edge\template\Dockerfile_debug.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(nameSpace));
+            this.Write(this.ToStringHelper.ToStringWithCulture(projectName));
             
             #line default
             #line hidden
-            this.Write("\"]\r\n");
+            this.Write(".dll\"]\r\n");
             return this.GenerationEnvironment.ToString();
         }
     }

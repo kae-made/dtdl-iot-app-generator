@@ -1,4 +1,6 @@
-﻿using Microsoft.Azure.DigitalTwins.Parser;
+﻿// Copyright (c) Knowledge & Experience. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+using Microsoft.Azure.DigitalTwins.Parser;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -90,6 +92,8 @@ namespace Kae.IoT.PnP.Generator.Csharp
         protected static readonly string RPDataTypeName = "AppDTReporetedProperties";
         protected static readonly string FWIoTDataTypeName = "IoTData";
 
+        protected static readonly string BuildDLLPath = "out";
+
         public static CSharpCodeGenerator CreateGenerator(string genFolderPath, string modelId, string appName, string nameSpace, string exeTypeParam, string ioTFrameworkProjectPath)
         {
             ExeType exeType = ExeType.DeviceApp;
@@ -125,12 +129,7 @@ namespace Kae.IoT.PnP.Generator.Csharp
         protected abstract string GenerateProgramCSContent();
         protected async Task CreateProjectEnvironmentCommon()
         {
-            var projName = "";
-            var pns = ProjectName.Split(new char[] { ' ' });
-            foreach (var pnf in pns)
-            {
-                projName += pnf.Substring(0, 1).ToUpper() + pnf.Substring(1);
-            }
+            var projName = GetProjectNameOnCode();
             ProjFolderPath = Path.Join(GenFolderPath, projName);
             if (!Directory.Exists(ProjFolderPath))
             {
@@ -150,6 +149,16 @@ namespace Kae.IoT.PnP.Generator.Csharp
             AppConnectorName = $"{projName}AppConnector";
         }
 
+        public string GetProjectNameOnCode()
+        {
+            var resultName = "";
+            var pns = ProjectName.Split(new char[] { ' ' });
+            foreach (var pnf in pns)
+            {
+                resultName += pnf.Substring(0, 1).ToUpper() + pnf.Substring(1);
+            }
+            return resultName;
+        }
         
         public async Task CreateProjectEnvironmentOld()
         {

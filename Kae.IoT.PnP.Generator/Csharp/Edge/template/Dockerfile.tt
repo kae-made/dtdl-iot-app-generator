@@ -35,4 +35,4 @@ USER moduleuser
 		}
 #>
 
-ENTRYPOINT ["dotnet", "<#= nameSpace #>.dll"]
+ENTRYPOINT ["dotnet", "<#= projectName #>.dll"]

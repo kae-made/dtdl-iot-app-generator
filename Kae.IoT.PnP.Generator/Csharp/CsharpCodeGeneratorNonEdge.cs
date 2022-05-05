@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Copyright (c) Knowledge & Experience. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -16,6 +18,10 @@ namespace Kae.IoT.PnP.Generator.Csharp
 
         protected override async Task CreateProjectEnvironment()
         {
+            if (projectExeType== ExeType.Service)
+            {
+                this.UserSecretsIed = Guid.NewGuid().ToString("D");
+            }
             await CreateProjectEnvironmentCommon();
         }
 

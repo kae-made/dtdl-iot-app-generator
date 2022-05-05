@@ -1,4 +1,6 @@
-﻿using Kae.IoT.PnP.Generator.Csharp;
+﻿// Copyright (c) Knowledge & Experience. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+using Kae.IoT.PnP.Generator.Csharp;
 using Microsoft.Azure.DigitalTwins.Parser;
 using System;
 using System.Collections.Generic;
@@ -94,6 +96,7 @@ namespace Kae.IoT.PnP.Generator
 
         protected void PickupInterfaces(IReadOnlyDictionary<Dtmi, DTEntityInfo> parsedModel)
         {
+            dtInterfaces.Clear();
             foreach (var item in parsedModel)
             {
                 if (item.Value.EntityKind == DTEntityKind.Interface)
@@ -106,6 +109,7 @@ namespace Kae.IoT.PnP.Generator
 
         protected void PickupTelemetries(GElemDTInterfaceInfo dtInterface)
         {
+            dtTelemetries.Clear();
             var itemTelemetries = dtInterface.Info.Contents.Where(item => item.Value.EntityKind == DTEntityKind.Telemetry);
             foreach (var item in itemTelemetries)
             {
@@ -115,6 +119,8 @@ namespace Kae.IoT.PnP.Generator
 
         protected void PickupProperties(GElemDTInterfaceInfo dtInterface)
         {
+            dtDesiredProperties.Clear();
+            dtReporedProperties.Clear();
             var itemDesiredProperties = dtInterface.Info.Contents.Where(item => item.Value.EntityKind == DTEntityKind.Property);
             foreach (var item in itemDesiredProperties)
             {
@@ -132,6 +138,8 @@ namespace Kae.IoT.PnP.Generator
 
         protected void PickupCommands(GElemDTInterfaceInfo dTInterface)
         {
+            dtAsyncDirectMethods.Clear();
+            dtSyncDirectMethods.Clear();
             var itemCommands = dTInterface.Info.Contents.Where(item => item.Value.EntityKind == DTEntityKind.Command);
             foreach (var item in itemCommands)
             {
@@ -149,6 +157,7 @@ namespace Kae.IoT.PnP.Generator
 
         protected void PickupComponent(IReadOnlyDictionary<Dtmi, DTEntityInfo> parsedModel)
         {
+            dtComponents.Clear();
             foreach (var item in parsedModel)
             {
                 if (item.Value.EntityKind == DTEntityKind.Component)

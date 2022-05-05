@@ -36,10 +36,10 @@ namespace Kae.IoT.PnP.Generator.Csharp.Edge.template
             
             #line default
             #line hidden
-            this.Write("\'\",\r\n    \"image\": {\r\n        \"repository\": \"localhost:5000");
+            this.Write("\'\",\r\n    \"image\": {\r\n        \"repository\": \"localhost:5000/");
             
             #line 10 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Edge\template\Module_json.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(nameSpace));
+            this.Write(this.ToStringHelper.ToStringWithCulture(projectName));
             
             #line default
             #line hidden

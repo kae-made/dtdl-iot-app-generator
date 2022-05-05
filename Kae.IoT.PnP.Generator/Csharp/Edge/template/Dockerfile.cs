@@ -75,7 +75,7 @@ namespace Kae.IoT.PnP.Generator.Csharp.Edge.template
             this.Write("\r\nENTRYPOINT [\"dotnet\", \"");
             
             #line 38 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Edge\template\Dockerfile.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(nameSpace));
+            this.Write(this.ToStringHelper.ToStringWithCulture(projectName));
             
             #line default
             #line hidden

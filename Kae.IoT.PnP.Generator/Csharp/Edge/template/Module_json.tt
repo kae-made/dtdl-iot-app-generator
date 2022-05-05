@@ -7,7 +7,7 @@
     "$schema-version": "0.0.1",
     "description": "This file is auto generated - '<#= Version #>'",
     "image": {
-        "repository": "localhost:5000<#= nameSpace #>",
+        "repository": "localhost:5000/<#= projectName #>",
         "tag": {
             "version": "0.0.1",
             "platforms": {

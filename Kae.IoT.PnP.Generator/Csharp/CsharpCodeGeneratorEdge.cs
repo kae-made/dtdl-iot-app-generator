@@ -1,5 +1,8 @@
-﻿using System;
+﻿// Copyright (c) Knowledge & Experience. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -38,7 +41,10 @@ namespace Kae.IoT.PnP.Generator.Csharp
         private static readonly string dockerignoreFileName = ".dockerignore";
         private static readonly string gitignoreFileName = ".gitignore";
 
-        protected static readonly string[] origFilesFolderPath = new string[] { "Kae", "IoT", "PnP", "Generator", "Csharp", "EdgeModule", "template" };
+        private static readonly string iotFWDllFileName = "Kae.IoT.Framework.dll";
+        private static readonly string loggingFWDllFileName = "Kae.Utility.Logging.dll";
+
+        protected static readonly string[] origFilesFolderPath = new string[] { "Csharp", "Edge", "template" };
         protected string origContentsBasePath = "";
 
         public CsharpCodeGeneratorEdge(string iotFWProjectPath) : base(ExeType.Edge, iotFWProjectPath)
@@ -53,20 +59,42 @@ namespace Kae.IoT.PnP.Generator.Csharp
             await CreateProjectEnvironmentCommon();
 
             await CreateDockerItems();
+
+            string destIoTFWDllPath = Path.Join(ProjFolderPath, iotFWDllFileName);
+            string destLoggingFWDllPath = Path.Join(ProjFolderPath, loggingFWDllFileName);
+            if ((!File.Exists(destIoTFWDllPath)) && (!File.Exists(destLoggingFWDllPath)))
+            {
+
+                using (var fwBuildProcess = new Process())
+                {
+                    fwBuildProcess.StartInfo.WorkingDirectory = iotFrameworkProjectPath;
+                    fwBuildProcess.StartInfo.Arguments = $"publish -c Release -o {BuildDLLPath}";
+                    fwBuildProcess.StartInfo.FileName = "dotnet";
+                    if (fwBuildProcess.Start())
+                    {
+                        var iotFWDllPath = Path.Join(iotFrameworkProjectPath,BuildDLLPath, iotFWDllFileName);
+                        var loggingDllPath = Path.Join(iotFrameworkProjectPath,BuildDLLPath, loggingFWDllFileName);
+                        var iotFWDllDestPath = Path.Join(ProjFolderPath, iotFWDllFileName);
+                        var loggingDllDestPath = Path.Join(ProjFolderPath, loggingFWDllFileName);
+                        File.Copy(iotFWDllPath, iotFWDllDestPath);
+                        File.Copy(loggingDllPath, loggingDllDestPath);
+                    }
+                }
+            }
         }
 
         protected async Task CreateDockerItems()
         {
             foreach (var arch in archNames)
             {
-                var dockerFileGenerator = new Dockerfile(NameSpace, dockerSdkImages[arch], dockerRuntimeImages[arch], addUserForArch[arch]) { Version = currentVersion };
+                var dockerFileGenerator = new Dockerfile(NameSpace, GetProjectNameOnCode(), dockerSdkImages[arch], dockerRuntimeImages[arch], addUserForArch[arch]) { Version = currentVersion };
                 var content = dockerFileGenerator.TransformText();
                 var fileName = DockerFileName(arch);
                 await WriteToFileAsync(fileName, content);
             }
             foreach(var arch in archDebugNames)
             {
-                var generator = new Dockerfile_debug(NameSpace, dockerSdkImages[arch], dockerRuntimeImages[arch]) { Version = currentVersion };
+                var generator = new Dockerfile_debug(NameSpace, GetProjectNameOnCode(), dockerSdkImages[arch], dockerRuntimeImages[arch]) { Version = currentVersion };
                 var content = generator.TransformText();
                 var fileName = DockerFileName(arch, true);
                 await WriteToFileAsync(fileName, content);
@@ -84,18 +112,23 @@ namespace Kae.IoT.PnP.Generator.Csharp
                 if (index < archDebugNames.Count())
                 {
                     string archName = archDebugNames.ElementAt(index);
-                    dockerfileNames.Add(archName, $"./{DockerFileName(archName, true)}");
+                    dockerfileNames.Add($"{archName}.debug", $"./{DockerFileName(archName, true)}");
+                }
+                index++;
+                if (index>=archNames.Count() && index >= archDebugNames.Count())
+                {
+                    break;
                 }
             }
-            var moduleGenerator = new Module_json(NameSpace, dockerfileNames) { Version = currentVersion };
+            var moduleGenerator = new Module_json(NameSpace, GetProjectNameOnCode(), dockerfileNames) { Version = currentVersion };
             var moduleContent = moduleGenerator.TransformText();
             await WriteToFileAsync(moduleJsonFileName, moduleContent);
 
-            var origDockerignoreFileName = Path.Join(origContentsBasePath, dockerignoreOrigFileName);
+            var origDockerignoreFileName = Path.Join(genTemplateFolderPath, dockerignoreOrigFileName);
             await BuildProjectFileItem(ProjFolderPath, dockerignoreFileName, origDockerignoreFileName);
 
-            var origGitignoreFileName = Path.Join(origContentsBasePath, gitignoreOrigFileName);
-            await BuildProjectFileItem(ProjFolderPath, gitignoreFileName, gitignoreOrigFileName);
+            var origGitignoreFileName = Path.Join(genTemplateFolderPath, gitignoreOrigFileName);
+            await BuildProjectFileItem(ProjFolderPath, gitignoreFileName, origGitignoreFileName);
         }
 
         private void Prototype()
