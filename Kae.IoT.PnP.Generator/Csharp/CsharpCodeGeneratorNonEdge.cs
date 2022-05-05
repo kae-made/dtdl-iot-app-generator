@@ -12,7 +12,7 @@ namespace Kae.IoT.PnP.Generator.Csharp
 {
     class CsharpCodeGeneratorNonEdge : CSharpCodeGenerator
     {
-        public CsharpCodeGeneratorNonEdge(ExeType exeType, string iotFWProjectPath) : base(exeType, iotFWProjectPath)
+        public CsharpCodeGeneratorNonEdge(ExeType exeType, string appName, string iotFWProjectPath) : base(exeType, appName, iotFWProjectPath)
         {
         }
 
@@ -23,6 +23,8 @@ namespace Kae.IoT.PnP.Generator.Csharp
                 this.UserSecretsIed = Guid.NewGuid().ToString("D");
             }
             await CreateProjectEnvironmentCommon();
+
+            BuildIoTFWLibrary();
         }
 
         protected override string GenerateProgramCSContent()

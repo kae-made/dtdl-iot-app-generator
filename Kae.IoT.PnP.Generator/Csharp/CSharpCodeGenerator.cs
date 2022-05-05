@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Kae.IoT.PnP.Generator.Csharp.App.template;
 using Kae.IoT.PnP.Generator.Csharp.Common.template;
+using System.Diagnostics;
 
 namespace Kae.IoT.PnP.Generator.Csharp
 {
@@ -41,16 +42,19 @@ namespace Kae.IoT.PnP.Generator.Csharp
 
         protected ExeType projectExeType;
 
-        public CSharpCodeGenerator(ExeType exeType, string iotFrameworkProjectPath)
+        public CSharpCodeGenerator(ExeType exeType, string appName, string iotFrameworkProjectPath)
         {
             Version = currentVersion;
             this.projectExeType = exeType;
             this.iotFrameworkProjectPath = iotFrameworkProjectPath;
+            this.ProjectName = appName;
 
 
             string codeBase = Assembly.GetExecutingAssembly().Location;
             var dirInfo = new DirectoryInfo(codeBase);
             genTemplateFolderPath = Path.Join(dirInfo.Parent.FullName, Path.Join(templateFolderPath));
+
+            NameSpace = $"{NameSpace}.{GetProjectNameOnCode()}";
         }
 
         public async Task Generate(
@@ -93,6 +97,9 @@ namespace Kae.IoT.PnP.Generator.Csharp
         protected static readonly string FWIoTDataTypeName = "IoTData";
 
         protected static readonly string BuildDLLPath = "out";
+        protected static readonly string iotFWDllFileName = "Kae.IoT.Framework.dll";
+        protected static readonly string loggingFWDllFileName = "Kae.Utility.Logging.dll";
+
 
         public static CSharpCodeGenerator CreateGenerator(string genFolderPath, string modelId, string appName, string nameSpace, string exeTypeParam, string ioTFrameworkProjectPath)
         {
@@ -116,10 +123,10 @@ namespace Kae.IoT.PnP.Generator.Csharp
             {
                 case ExeType.DeviceApp:
                 case ExeType.Service:
-                    generator = new CsharpCodeGeneratorNonEdge(exeType,  ioTFrameworkProjectPath) { GenFolderPath=genFolderPath, ProjectName=appName, NameSpace=nameSpace, ModelId=modelId };
+                    generator = new CsharpCodeGeneratorNonEdge(exeType, appName, ioTFrameworkProjectPath) { GenFolderPath = genFolderPath, NameSpace = nameSpace, ModelId = modelId };
                     break;
                 case ExeType.Edge:
-                    generator = new CsharpCodeGeneratorEdge(ioTFrameworkProjectPath) { GenFolderPath = genFolderPath, ProjectName = appName, NameSpace = nameSpace, ModelId = modelId };
+                    generator = new CsharpCodeGeneratorEdge(appName, ioTFrameworkProjectPath) { GenFolderPath = genFolderPath, NameSpace = nameSpace, ModelId = modelId };
                     break;
             }
             return generator;
@@ -158,6 +165,16 @@ namespace Kae.IoT.PnP.Generator.Csharp
                 resultName += pnf.Substring(0, 1).ToUpper() + pnf.Substring(1);
             }
             return resultName;
+        }
+
+        public string GetIoTFrameworkDllPath()
+        {
+            return Path.Join(iotFrameworkProjectPath, BuildDLLPath, iotFWDllFileName);
+        }
+
+        public string GetLoggingDllPath()
+        {
+            return Path.Join(iotFrameworkProjectPath, BuildDLLPath, loggingFWDllFileName); ;
         }
         
         public async Task CreateProjectEnvironmentOld()
@@ -201,6 +218,31 @@ namespace Kae.IoT.PnP.Generator.Csharp
                 }
             }
         }
+
+        protected bool BuildIoTFWLibrary()
+        {
+            string iotFWDllPath = GetIoTFrameworkDllPath();
+            string loggingDllPath = GetLoggingDllPath();
+            bool result = true;
+            if ((!File.Exists(iotFWDllPath)) && (!File.Exists(loggingDllPath)))
+            {
+                using (var fwBuildProcess = new Process())
+                {
+                    fwBuildProcess.StartInfo.WorkingDirectory = iotFrameworkProjectPath;
+                    fwBuildProcess.StartInfo.Arguments = $"publish -c Release -o {BuildDLLPath}";
+                    fwBuildProcess.StartInfo.FileName = "dotnet";
+                    if (fwBuildProcess.Start())
+                    {
+                    }
+                    else
+                    {
+                        result = false;
+                    }
+                }
+            }
+            return result;
+        }
+
 
         public async Task GenerateAppIoTDataCS(
             IDictionary<string, GElemDTTelemetryInfo> telemetries,

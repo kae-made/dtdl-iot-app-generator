@@ -166,17 +166,25 @@ namespace Kae.IoT.PnP.Generator.Csharp.Common.template
             
             #line default
             #line hidden
-            this.Write("  <ItemGroup>\r\n    <ProjectReference Include=\"");
+            this.Write("  <ItemGroup>\r\n    <Reference Include=\"Kae.IoT.Framework\">\r\n      <HintPath>");
             
-            #line 74 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\ProjectFile.tt"
+            #line 75 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\ProjectFile.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(iotFrameworkProjectPath));
             
             #line default
             #line hidden
-            this.Write("\\Kae.IoT.Framework.csproj\" />\r\n  </ItemGroup>\r\n\r\n  <ItemGroup>\r\n    <None Update=" +
-                    "\"");
+            this.Write("\\out\\Kae.IoT.Framework.dll</HintPath>\r\n    </Reference>\r\n    <Reference Include=\"" +
+                    "Kae.Utility.Logging\">\r\n      <HintPath>");
             
             #line 78 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\ProjectFile.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(iotFrameworkProjectPath));
+            
+            #line default
+            #line hidden
+            this.Write("\\out\\Kae.Utility.Logging.dll</HintPath>\r\n    </Reference>\r\n  </ItemGroup>\r\n\r\n  <I" +
+                    "temGroup>\r\n    <None Update=\"");
+            
+            #line 83 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\ProjectFile.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(configFileName));
             
             #line default
@@ -184,14 +192,14 @@ namespace Kae.IoT.PnP.Generator.Csharp.Common.template
             this.Write("\">\r\n      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>\r\n    </No" +
                     "ne>\r\n  </ItemGroup>\r\n");
             
-            #line 82 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\ProjectFile.tt"
+            #line 87 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\ProjectFile.tt"
             }
 
             
             #line default
             #line hidden
             
-            #line 84 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\ProjectFile.tt"
+            #line 89 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\ProjectFile.tt"
 
             if (IsEdge())
             { 
@@ -208,7 +216,7 @@ namespace Kae.IoT.PnP.Generator.Csharp.Common.template
   </ItemGroup>
 ");
             
-            #line 95 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\ProjectFile.tt"
+            #line 100 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\ProjectFile.tt"
           }
 
             

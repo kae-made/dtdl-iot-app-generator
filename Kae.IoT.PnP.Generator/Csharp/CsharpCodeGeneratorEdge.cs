@@ -41,13 +41,10 @@ namespace Kae.IoT.PnP.Generator.Csharp
         private static readonly string dockerignoreFileName = ".dockerignore";
         private static readonly string gitignoreFileName = ".gitignore";
 
-        private static readonly string iotFWDllFileName = "Kae.IoT.Framework.dll";
-        private static readonly string loggingFWDllFileName = "Kae.Utility.Logging.dll";
-
         protected static readonly string[] origFilesFolderPath = new string[] { "Csharp", "Edge", "template" };
         protected string origContentsBasePath = "";
 
-        public CsharpCodeGeneratorEdge(string iotFWProjectPath) : base(ExeType.Edge, iotFWProjectPath)
+        public CsharpCodeGeneratorEdge(string appName, string iotFWProjectPath) : base(ExeType.Edge, appName, iotFWProjectPath)
         {
             string codeBase = Assembly.GetExecutingAssembly().Location;
             var dirInfo = new DirectoryInfo(codeBase);
@@ -60,28 +57,21 @@ namespace Kae.IoT.PnP.Generator.Csharp
 
             await CreateDockerItems();
 
+
             string destIoTFWDllPath = Path.Join(ProjFolderPath, iotFWDllFileName);
             string destLoggingFWDllPath = Path.Join(ProjFolderPath, loggingFWDllFileName);
             if ((!File.Exists(destIoTFWDllPath)) && (!File.Exists(destLoggingFWDllPath)))
             {
-
-                using (var fwBuildProcess = new Process())
+                if (BuildIoTFWLibrary())
                 {
-                    fwBuildProcess.StartInfo.WorkingDirectory = iotFrameworkProjectPath;
-                    fwBuildProcess.StartInfo.Arguments = $"publish -c Release -o {BuildDLLPath}";
-                    fwBuildProcess.StartInfo.FileName = "dotnet";
-                    if (fwBuildProcess.Start())
-                    {
-                        var iotFWDllPath = Path.Join(iotFrameworkProjectPath,BuildDLLPath, iotFWDllFileName);
-                        var loggingDllPath = Path.Join(iotFrameworkProjectPath,BuildDLLPath, loggingFWDllFileName);
-                        var iotFWDllDestPath = Path.Join(ProjFolderPath, iotFWDllFileName);
-                        var loggingDllDestPath = Path.Join(ProjFolderPath, loggingFWDllFileName);
-                        File.Copy(iotFWDllPath, iotFWDllDestPath);
-                        File.Copy(loggingDllPath, loggingDllDestPath);
-                    }
+                    var iotFWDllPath = GetIoTFrameworkDllPath();
+                    var loggingDllPath = GetLoggingDllPath();
+                    File.Copy(iotFWDllPath, destIoTFWDllPath);
+                    File.Copy(loggingDllPath, destLoggingFWDllPath);
                 }
             }
         }
+
 
         protected async Task CreateDockerItems()
         {
