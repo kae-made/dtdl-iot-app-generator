@@ -296,7 +296,7 @@ namespace Kae.IoT.PnP.Generator.Csharp
         {
             var generator = new IoTAppCode_cs(NameSpace, syncDirectMethods, asyncDirectMethods) { Version = currentVersion };
             var codeContent = generator.TransformText();
-            await WriteToFileAsync(IoTApp_code_cs_FileName, codeContent);
+            await WriteToFileAsync(IoTApp_code_cs_FileName, codeContent, false);
         }
 
         public async Task GenerateIoTAppConnectorCS(IDictionary<string, GElemDTCommandInfo> syncDirectMethods, IDictionary<string, GElemDTCommandInfo> asyncDirectMethods)
@@ -314,13 +314,24 @@ namespace Kae.IoT.PnP.Generator.Csharp
             await WriteToFileAsync(Program_cs_FileName, codeContent);
         }
 
-        protected async Task WriteToFileAsync(string fileName, string content)
+        protected async Task WriteToFileAsync(string fileName, string content, bool overwrite = true)
         {
             string fileAbsolutePath = Path.Join(ProjFolderPath, fileName);
-            using (var writer = new StreamWriter(fileAbsolutePath))
+            bool isUpdate = true;
+            if (overwrite == false)
             {
-                await writer.WriteAsync(content);
-                await writer.FlushAsync();
+                if (File.Exists(fileAbsolutePath))
+                {
+                    isUpdate = false;
+                }
+            }
+            if (isUpdate)
+            {
+                using (var writer = new StreamWriter(fileAbsolutePath))
+                {
+                    await writer.WriteAsync(content);
+                    await writer.FlushAsync();
+                }
             }
         }
 

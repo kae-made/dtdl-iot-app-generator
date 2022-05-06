@@ -47,9 +47,12 @@ namespace Kae.IoT.PnP.Generator.Csharp
 
         protected override async Task GenerateSpecificCode()
         {
-            var generator = new Worker_cs(NameSpace) { Version = currentVersion };
-            var content = generator.TransformText();
-            await WriteToFileAsync(Worker_cs_FileName, content);
+            if (projectExeType == ExeType.Service)
+            {
+                var generator = new Worker_cs(NameSpace) { Version = currentVersion };
+                var content = generator.TransformText();
+                await WriteToFileAsync(Worker_cs_FileName, content);
+            }
         }
     }
 }
