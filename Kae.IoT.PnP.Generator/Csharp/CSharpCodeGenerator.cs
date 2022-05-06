@@ -36,7 +36,7 @@ namespace Kae.IoT.PnP.Generator.Csharp
         public string Indent { get; set; }
         public string Version { get; set; }
 
-        protected static readonly string currentVersion = "0.0.1";
+        protected static readonly string currentVersion = "0.1.0";
         protected string genTemplateFolderPath;
         protected string iotFrameworkProjectPath;
 
@@ -96,7 +96,7 @@ namespace Kae.IoT.PnP.Generator.Csharp
         protected static readonly string D2CDataTypeName = "D2CData";
         protected static readonly string DPDataTypeName = "AppDTDesiredProperties";
         protected static readonly string RPDataTypeName = "AppDTReporetedProperties";
-        protected static readonly string FWIoTDataTypeName = "IoTData";
+        protected static readonly string FWIoTDataTypeName = "Kae.IoT.Framework.IoTData";
 
         protected static readonly string BuildDLLPath = "out";
         protected static readonly string iotFWDllFileName = "Kae.IoT.Framework.dll";
@@ -263,16 +263,17 @@ namespace Kae.IoT.PnP.Generator.Csharp
             string d2cDTNameForDesirialize = D2CDataTypeName;
             string dpDTNameForDesirialize = DPDataTypeName;
             string rpDTNameForDesirialize = RPDataTypeName;
-            if (projectExeType== ExeType.Edge)
+            if (projectExeType == ExeType.Edge)
             {
                 d2cDTNameForDesirialize = FWIoTDataTypeName;
                 dpDTNameForDesirialize = FWIoTDataTypeName;
                 rpDTNameForDesirialize = FWIoTDataTypeName;
             }
-            
+
             var generator = new AppIoTData_cs(IndentUnit, Indent, NameSpace,
-                D2CDataTypeName,d2cDTNameForDesirialize,DPDataTypeName,dpDTNameForDesirialize,RPDataTypeName, rpDTNameForDesirialize,
-                telemetries, desiredProperties, reportedProperties, syncDirectMethods, asyncDirectMethods) { Version = currentVersion };
+                D2CDataTypeName, d2cDTNameForDesirialize, DPDataTypeName, dpDTNameForDesirialize, RPDataTypeName, rpDTNameForDesirialize,
+                telemetries, desiredProperties, reportedProperties, syncDirectMethods, asyncDirectMethods)
+            { Version = currentVersion };
             var codeContent = generator.TransformText();
             await WriteToFileAsync(AppIoTData_cs_FileName, codeContent);
         }
