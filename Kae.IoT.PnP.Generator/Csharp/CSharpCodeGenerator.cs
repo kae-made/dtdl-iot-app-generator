@@ -76,6 +76,7 @@ namespace Kae.IoT.PnP.Generator.Csharp
             await GenerateIoTAppCodeCS(dtSyncDirectMethods, dtAsyncDirectMethods);
             await GenerateIoTAppConnectorCS(dtSyncDirectMethods, dtAsyncDirectMethods);
             await GenerateProgramCS();
+            await GenerateSpecificCode();
         }
 
         protected static readonly string [] templateFolderPath = new string[] { "Kae", "IoT", "PnP", "Generator", "Csharp", "DeviceApp", "template" };
@@ -352,6 +353,8 @@ namespace Kae.IoT.PnP.Generator.Csharp
             }
             return typeName;
         }
+
+        protected abstract Task GenerateSpecificCode();
 
         public static string GetMethodName(DTCommandInfo commandInfo)
         {

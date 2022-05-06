@@ -148,5 +148,10 @@ namespace Kae.IoT.PnP.Generator.Csharp
             var generator = new ProgramEdge_cs(NameSpace) { Version = currentVersion };
             return generator.TransformText();
         }
+
+        protected override async Task GenerateSpecificCode()
+        {
+            // Do nothing
+        }
     }
 }

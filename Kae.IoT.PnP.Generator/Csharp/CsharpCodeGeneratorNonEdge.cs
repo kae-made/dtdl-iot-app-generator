@@ -12,6 +12,7 @@ namespace Kae.IoT.PnP.Generator.Csharp
 {
     class CsharpCodeGeneratorNonEdge : CSharpCodeGenerator
     {
+        protected static readonly string Worker_cs_FileName = "Worker.cs";
         public CsharpCodeGeneratorNonEdge(ExeType exeType, string appName, string iotFWProjectPath) : base(exeType, appName, iotFWProjectPath)
         {
         }
@@ -42,6 +43,13 @@ namespace Kae.IoT.PnP.Generator.Csharp
                     break;
             }
             return content;
+        }
+
+        protected override async Task GenerateSpecificCode()
+        {
+            var generator = new Worker_cs(NameSpace) { Version = currentVersion };
+            var content = generator.TransformText();
+            await WriteToFileAsync(Worker_cs_FileName, content);
         }
     }
 }
