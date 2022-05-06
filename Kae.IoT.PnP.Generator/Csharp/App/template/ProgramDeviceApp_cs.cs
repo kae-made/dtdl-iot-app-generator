@@ -52,7 +52,7 @@ namespace Kae.IoT.PnP.Generator.Csharp.App.template
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Kae.utility;
+using Kae.Utility.Logging;
 using System;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;

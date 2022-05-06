@@ -75,7 +75,7 @@ namespace ");
             
             #line default
             #line hidden
-            this.Write(" : Kae.IoT.Framework.D2CMessage\r\n    {\r\n");
+            this.Write(" : Kae.IoT.Framework.IoTDataWithProperties\r\n    {\r\n");
             
             #line 33 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
  

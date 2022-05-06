@@ -28,7 +28,7 @@ using System.Threading.Tasks;
 
 namespace <#= nameSpace #>
 {
-    class <#= d2cDataTypeName #> : Kae.IoT.Framework.D2CMessage
+    class <#= d2cDataTypeName #> : Kae.IoT.Framework.IoTDataWithProperties
     {
 <# 
     indent = "        ";

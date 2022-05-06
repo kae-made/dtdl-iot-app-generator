@@ -32,7 +32,7 @@ namespace <#= nameSpace #>
     { 
         private IIoTApp iotApp;
 
-        public <#= className #>(IIoTApp app)
+        public <#= className #>(IoTAppConfig appConfig, IIoTApp app) : base(appConfig)
         {
             iotApp = app;
         }
@@ -91,7 +91,7 @@ namespace <#= nameSpace #>
             return rp;
         }
 
-        public override IoTData GetAppD2CData()
+        public override IoTDataWithProperties GetAppD2CData()
         {
             return iotApp.GetD2CData();
         }

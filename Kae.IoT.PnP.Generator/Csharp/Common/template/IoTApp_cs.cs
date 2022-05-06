@@ -53,7 +53,7 @@ namespace Kae.IoT.PnP.Generator.Csharp.Common.template
 // ------------------------------------------------------------------------------
 
 using Kae.IoT.Framework;
-using Kae.utility;
+using Kae.Utility.Logging;
 using Microsoft.Azure.Devices.Client;
 using System;
 using System.Collections.Generic;
@@ -104,7 +104,14 @@ namespace ");
             }
 
             var iotAppConfig = IoTAppConfigResolver.ResolveConfig(configYamlFile);
-            appConnector = new MyIoTAppConnector(iotAppConfig, this);
+            appConnector = new ");
+            
+            #line 62 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IoTApp_cs.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(appConnectorName));
+            
+            #line default
+            #line hidden
+            this.Write(@"(iotAppConfig, this);
             iotClient = IoTClientFactory.CreateIoTClientForDevice(appConnector, logger);
 
             await iotClient.OpenAsync();

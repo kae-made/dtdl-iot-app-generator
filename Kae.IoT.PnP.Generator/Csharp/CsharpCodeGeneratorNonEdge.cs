@@ -20,7 +20,7 @@ namespace Kae.IoT.PnP.Generator.Csharp
         {
             if (projectExeType== ExeType.Service)
             {
-                this.UserSecretsIed = Guid.NewGuid().ToString("D");
+                this.UserSecretsIed = $"dotnet-{GetProjectNameOnCode()}-{Guid.NewGuid().ToString("D").ToUpper()}";
             }
             await CreateProjectEnvironmentCommon();
 

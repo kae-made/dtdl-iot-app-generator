@@ -18,7 +18,7 @@
 // ------------------------------------------------------------------------------
 
 using Kae.IoT.Framework;
-using Kae.utility;
+using Kae.Utility.Logging;
 using Microsoft.Azure.Devices.Client;
 using System;
 using System.Collections.Generic;
@@ -59,7 +59,7 @@ namespace <#= nameSpace #>
             }
 
             var iotAppConfig = IoTAppConfigResolver.ResolveConfig(configYamlFile);
-            appConnector = new MyIoTAppConnector(iotAppConfig, this);
+            appConnector = new <#= appConnectorName #>(iotAppConfig, this);
             iotClient = IoTClientFactory.CreateIoTClientForDevice(appConnector, logger);
 
             await iotClient.OpenAsync();

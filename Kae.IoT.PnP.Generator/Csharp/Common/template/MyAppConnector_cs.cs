@@ -83,7 +83,7 @@ namespace ");
             
             #line default
             #line hidden
-            this.Write(@"(IIoTApp app)
+            this.Write(@"(IoTAppConfig appConfig, IIoTApp app) : base(appConfig)
         {
             iotApp = app;
         }
@@ -188,7 +188,7 @@ namespace ");
             return rp;
         }
 
-        public override IoTData GetAppD2CData()
+        public override IoTDataWithProperties GetAppD2CData()
         {
             return iotApp.GetD2CData();
         }

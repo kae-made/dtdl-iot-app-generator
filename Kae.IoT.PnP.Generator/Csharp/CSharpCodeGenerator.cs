@@ -90,6 +90,7 @@ namespace Kae.IoT.PnP.Generator.Csharp
         protected static readonly string Program_cs_FileName = "Program.cs";
         protected static readonly string AppIoTData_cs_FileName = "AppIoTData.cs";
         protected static readonly string IoTAppConnector_Fragment_FileName = "IoTAppConnector.cs";
+        protected static readonly string IoTAppConnector_Classname_PostFix = "IoTAppConnector";
 
         protected static readonly string D2CDataTypeName = "D2CData";
         protected static readonly string DPDataTypeName = "AppDTDesiredProperties";
@@ -298,7 +299,7 @@ namespace Kae.IoT.PnP.Generator.Csharp
 
         public async Task GenerateIoTAppConnectorCS(IDictionary<string, GElemDTCommandInfo> syncDirectMethods, IDictionary<string, GElemDTCommandInfo> asyncDirectMethods)
         {
-            var generator = new MyAppConnector_cs(NameSpace, ClassName, syncDirectMethods, asyncDirectMethods) { Version = currentVersion };
+            var generator = new MyAppConnector_cs(NameSpace, AppConnectorName, syncDirectMethods, asyncDirectMethods) { Version = currentVersion };
             var codeContent = generator.TransformText();
             await WriteToFileAsync($"{AppConnectorName}.cs", codeContent);
         }
