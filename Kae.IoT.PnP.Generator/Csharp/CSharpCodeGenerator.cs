@@ -36,7 +36,7 @@ namespace Kae.IoT.PnP.Generator.Csharp
         public string Indent { get; set; }
         public string Version { get; set; }
 
-        protected static readonly string currentVersion = "0.1.0";
+        protected static readonly string currentVersion = "0.1.1";
         protected string genTemplateFolderPath;
         protected string iotFrameworkProjectPath;
 
@@ -53,8 +53,6 @@ namespace Kae.IoT.PnP.Generator.Csharp
             string codeBase = Assembly.GetExecutingAssembly().Location;
             var dirInfo = new DirectoryInfo(codeBase);
             genTemplateFolderPath = Path.Join(dirInfo.Parent.FullName, Path.Join(templateFolderPath));
-
-            NameSpace = $"{NameSpace}.{GetProjectNameOnCode()}";
         }
 
         public async Task Generate(
@@ -121,16 +119,18 @@ namespace Kae.IoT.PnP.Generator.Csharp
                     throw new ArgumentOutOfRangeException("exeTypeParam should be 'DeviceApp' or 'Service' or 'Edge'!");
             }
             CSharpCodeGenerator generator = null;
+
             switch (exeType)
             {
                 case ExeType.DeviceApp:
                 case ExeType.Service:
-                    generator = new CsharpCodeGeneratorNonEdge(exeType, appName, ioTFrameworkProjectPath) { GenFolderPath = genFolderPath, NameSpace = nameSpace, ModelId = modelId };
+                    generator = new CsharpCodeGeneratorNonEdge(exeType, appName, ioTFrameworkProjectPath) { GenFolderPath = genFolderPath, ModelId = modelId };
                     break;
                 case ExeType.Edge:
-                    generator = new CsharpCodeGeneratorEdge(appName, ioTFrameworkProjectPath) { GenFolderPath = genFolderPath, NameSpace = nameSpace, ModelId = modelId };
+                    generator = new CsharpCodeGeneratorEdge(appName, ioTFrameworkProjectPath) { GenFolderPath = genFolderPath, ModelId = modelId };
                     break;
             }
+            generator.NameSpace = $"{nameSpace}.{generator.GetProjectNameOnCode()}";
             return generator;
         }
 
