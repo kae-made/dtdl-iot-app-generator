@@ -35,6 +35,7 @@ namespace <#= nameSpace #>
         }
 
         Task DoWorkAsync();
+
         <# 
         foreach (var dmName in syncDirectMethods.Keys) {
         #>

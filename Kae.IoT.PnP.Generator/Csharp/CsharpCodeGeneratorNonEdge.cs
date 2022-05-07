@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Kae.IoT.PnP.Generator.Csharp.App.template;
+using Kae.Utility.Logging;
 
 namespace Kae.IoT.PnP.Generator.Csharp
 {
@@ -14,6 +15,9 @@ namespace Kae.IoT.PnP.Generator.Csharp
     {
         protected static readonly string Worker_cs_FileName = "Worker.cs";
         public CsharpCodeGeneratorNonEdge(ExeType exeType, string appName, string iotFWProjectPath) : base(exeType, appName, iotFWProjectPath)
+        {
+        }
+        public CsharpCodeGeneratorNonEdge(ExeType exeType, string appName, string iotFWProjectPath, Logger logger) : base(exeType, appName, iotFWProjectPath, logger)
         {
         }
 

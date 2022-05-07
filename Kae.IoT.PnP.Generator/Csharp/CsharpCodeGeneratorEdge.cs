@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Kae.IoT.PnP.Generator.Csharp.App.template;
 using Kae.IoT.PnP.Generator.Csharp.Edge.template;
+using Kae.Utility.Logging;
 
 namespace Kae.IoT.PnP.Generator.Csharp
 {
@@ -49,6 +50,11 @@ namespace Kae.IoT.PnP.Generator.Csharp
             string codeBase = Assembly.GetExecutingAssembly().Location;
             var dirInfo = new DirectoryInfo(codeBase);
             genTemplateFolderPath = Path.Join(dirInfo.Parent.FullName, Path.Join(origFilesFolderPath));
+        }
+
+        public CsharpCodeGeneratorEdge(string appName, string iotFWProjectPath, Logger logger) :base(ExeType.Edge,appName,iotFWProjectPath,logger)
+        {
+
         }
 
         protected override async Task CreateProjectEnvironment()

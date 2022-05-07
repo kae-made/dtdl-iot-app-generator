@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Kae.IoT.PnP.Generator.Csharp.App.template;
+using Kae.Utility.Logging;
 
 namespace Kae.IoT.PnP.Generator
 {
@@ -35,6 +36,8 @@ namespace Kae.IoT.PnP.Generator
         private string currentVersion = "0.0.1";
         public string Version { get; set; }
 
+        protected Logger logger;
+
         public IoTPnPCodeGenerater()
         {
             Version = currentVersion;
@@ -46,7 +49,10 @@ namespace Kae.IoT.PnP.Generator
             dtSyncDirectMethods = new Dictionary<string, GElemDTCommandInfo>();
             dtAsyncDirectMethods = new Dictionary<string, GElemDTCommandInfo>();
             dtComponents = new Dictionary<string, GElemDTComponentInfo>();
-            
+        }
+        public IoTPnPCodeGenerater(Logger logger) : this()
+        {
+            this.logger = logger;
         }
 
         
@@ -169,23 +175,39 @@ namespace Kae.IoT.PnP.Generator
 
         public async Task GenerateProject(string interfaceName, string genFolderPath, string appName, string nameSpace, string exeType, string ioTFrameworkProjectPath)
         {
-            GElemDTInterfaceInfo itemInterface = null;
-            foreach(var item in dtInterfaces.Keys)
+            try
             {
-                if (item == interfaceName)
+                GElemDTInterfaceInfo itemInterface = null;
+                foreach (var item in dtInterfaces.Keys)
                 {
-                    itemInterface = dtInterfaces[item];
-                    break;
+                    if (item == interfaceName)
+                    {
+                        itemInterface = dtInterfaces[item];
+                        break;
+                    }
+                }
+                if (itemInterface != null)
+                {
+                    logger?.LogInfo("Picking telemetries...");
+                    PickupTelemetries(itemInterface);
+                    logger?.LogInfo("Picking properties...");
+                    PickupProperties(itemInterface);
+                    //Prototype();
+                    logger?.LogInfo("Picking commands...");
+                    PickupCommands(itemInterface);
+
+                    var csharpGenerator = CSharpCodeGenerator.CreateGenerator(genFolderPath, interfaceName, appName, nameSpace, exeType, ioTFrameworkProjectPath, logger);
+                    logger?.LogInfo("Generating project...");
+                    await csharpGenerator.Generate(dtInterfaces, dtTelemetries, dtDesiredProperties, dtReporedProperties, dtSyncDirectMethods, dtAsyncDirectMethods);
+                }
+                else
+                {
+                    logger?.LogWarning($"{interfaceName} doesn't exist.");
                 }
             }
-            if (itemInterface != null)
+            catch (Exception ex)
             {
-                PickupTelemetries(itemInterface);
-                PickupProperties(itemInterface);
-                //Prototype();
-                PickupCommands(itemInterface);
-                var csharpGenerator = CSharpCodeGenerator.CreateGenerator(genFolderPath, interfaceName, appName, nameSpace, exeType, ioTFrameworkProjectPath);
-                await csharpGenerator.Generate(dtInterfaces, dtTelemetries, dtDesiredProperties, dtReporedProperties, dtSyncDirectMethods, dtAsyncDirectMethods);
+                logger?.LogError(ex.Message);
             }
         }
 

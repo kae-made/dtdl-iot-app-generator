@@ -68,9 +68,9 @@ namespace ");
             #line hidden
             this.Write("\r\n{\r\n    interface IIoTApp\r\n    {\r\n        AppDTDesiredProperties DesiredProperti" +
                     "es\r\n        {\r\n            get;\r\n            set;\r\n        }\r\n\r\n        Task DoW" +
-                    "orkAsync();\r\n        ");
+                    "orkAsync();\r\n\r\n        ");
             
-            #line 38 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IIoTApp_cs.tt"
+            #line 39 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IIoTApp_cs.tt"
  
         foreach (var dmName in syncDirectMethods.Keys) {
         
@@ -79,14 +79,14 @@ namespace ");
             #line hidden
             this.Write("        string ");
             
-            #line 41 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IIoTApp_cs.tt"
+            #line 42 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IIoTApp_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dmName));
             
             #line default
             #line hidden
             this.Write("(string payload);\r\n        ");
             
-            #line 42 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IIoTApp_cs.tt"
+            #line 43 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IIoTApp_cs.tt"
  
         }
         
@@ -95,7 +95,7 @@ namespace ");
             #line hidden
             this.Write("\r\n        ");
             
-            #line 46 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IIoTApp_cs.tt"
+            #line 47 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IIoTApp_cs.tt"
  
         foreach (var dmName in asyncDirectMethods.Keys) {
         
@@ -104,14 +104,14 @@ namespace ");
             #line hidden
             this.Write("        string ");
             
-            #line 49 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IIoTApp_cs.tt"
+            #line 50 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IIoTApp_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dmName));
             
             #line default
             #line hidden
             this.Write("(string payload);\r\n        ");
             
-            #line 50 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IIoTApp_cs.tt"
+            #line 51 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IIoTApp_cs.tt"
  
         }
         

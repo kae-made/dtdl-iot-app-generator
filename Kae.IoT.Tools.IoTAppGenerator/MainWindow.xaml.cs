@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Knowledge & Experience. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Kae.IoT.PnP.Generator;
+using Kae.Utility.Logging;
 using Microsoft.Win32;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using System;
@@ -40,6 +41,10 @@ namespace Kae.IoT.Tools.IoTAppGenerator
 
         private IoTPnPCodeGenerater generator;
 
+        private Logger logger;
+        bool logIsShowLevel = false;
+        bool logIsShowTimestamp = false;
+
         private static readonly string iotFrameworkProjectFileName = "Kae.IoT.Framework.csproj";
 
         public MainWindow()
@@ -53,6 +58,8 @@ namespace Kae.IoT.Tools.IoTAppGenerator
             lbInterfaces.ItemsSource = dtInterfaces;
             cbGenKind.ItemsSource = kindList;
             tvGenerated.ItemsSource = generatedViewerItems;
+
+            logger = new TextBlockLogger(tbLog, logIsShowLevel, logIsShowTimestamp);
         }
 
         private void buttonSelectDTDLFile_Click(object sender, RoutedEventArgs e)
@@ -81,7 +88,7 @@ namespace Kae.IoT.Tools.IoTAppGenerator
         {
             if (!string.IsNullOrEmpty(tbIoTPnPDTDL.Text))
             {
-                generator = new IoTPnPCodeGenerater();
+                generator = new IoTPnPCodeGenerater(logger);
                 await generator.LoadModel(tbIoTPnPDTDL.Text);
                 var result = await generator.Parse();
 
@@ -222,5 +229,48 @@ namespace Kae.IoT.Tools.IoTAppGenerator
             }
         }
 
+    }
+
+    class TextBlockLogger : Logger
+    {
+        TextBlock tbForLog;
+        bool isShowTimestamp;
+        bool isShowLogLevel;
+
+        public TextBlockLogger(TextBlock textBlock, bool isShowLogLevel, bool isShowTimestamp)
+        {
+            tbForLog = textBlock;
+            this.isShowLogLevel = isShowLogLevel;
+            this.isShowTimestamp = isShowTimestamp;
+        }
+
+        protected override async Task LogInternal(Level level, string log, string timestamp)
+        {
+            var builder = new StringBuilder(tbForLog.Text);
+            var logContent = "";
+            if (isShowLogLevel) {
+                switch (level)
+                {
+                    case Level.Info:
+                        logContent = "I";
+                        break;
+                    case Level.Warn:
+                        logContent = "W";
+                        break;
+                    case Level.Erro:
+                        logContent = "E";
+                        break;
+                }
+            }
+
+            if (isShowTimestamp)
+            {
+                logContent += $"@{DateTime.Now.ToString("hhmmss")} ";
+            }
+            builder.AppendLine($"{logContent}{log}");
+
+            tbForLog.Text = builder.ToString();
+
+        }
     }
 }

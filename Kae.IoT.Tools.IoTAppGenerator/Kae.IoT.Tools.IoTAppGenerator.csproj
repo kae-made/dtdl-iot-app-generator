@@ -11,6 +11,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Kae.Utility.Logging" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Kae.IoT.PnP.Generator\Kae.IoT.PnP.Generator.csproj" />
   </ItemGroup>
 

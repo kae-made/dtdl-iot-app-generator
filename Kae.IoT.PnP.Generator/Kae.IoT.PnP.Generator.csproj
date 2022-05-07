@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Kae.Utility.Logging" Version="1.0.0" />
     <PackageReference Include="Microsoft.Azure.DigitalTwins.Parser" Version="3.12.7" />
     <PackageReference Include="System.CodeDom" Version="6.0.0" />
   </ItemGroup>
