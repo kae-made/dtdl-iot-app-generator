@@ -235,12 +235,10 @@ namespace Kae.IoT.Tools.IoTAppGenerator
     {
         TextBlock tbForLog;
         bool isShowTimestamp;
-        bool isShowLogLevel;
 
-        public TextBlockLogger(TextBlock textBlock, bool isShowLogLevel, bool isShowTimestamp)
+        public TextBlockLogger(TextBlock textBlock, bool isShowTimestamp)
         {
             tbForLog = textBlock;
-            this.isShowLogLevel = isShowLogLevel;
             this.isShowTimestamp = isShowTimestamp;
         }
 
@@ -248,19 +246,14 @@ namespace Kae.IoT.Tools.IoTAppGenerator
         {
             var builder = new StringBuilder(tbForLog.Text);
             var logContent = "";
-            if (isShowLogLevel) {
-                switch (level)
-                {
-                    case Level.Info:
-                        logContent = "I";
-                        break;
-                    case Level.Warn:
-                        logContent = "W";
-                        break;
-                    case Level.Erro:
-                        logContent = "E";
-                        break;
-                }
+            switch (level)
+            {
+                case Level.Warn:
+                    logContent = "WARN";
+                    break;
+                case Level.Erro:
+                    logContent = "ERROR";
+                    break;
             }
 
             if (isShowTimestamp)

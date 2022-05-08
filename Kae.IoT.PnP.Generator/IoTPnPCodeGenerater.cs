@@ -199,6 +199,7 @@ namespace Kae.IoT.PnP.Generator
                     var csharpGenerator = CSharpCodeGenerator.CreateGenerator(genFolderPath, interfaceName, appName, nameSpace, exeType, ioTFrameworkProjectPath, logger);
                     logger?.LogInfo("Generating project...");
                     await csharpGenerator.Generate(dtInterfaces, dtTelemetries, dtDesiredProperties, dtReporedProperties, dtSyncDirectMethods, dtAsyncDirectMethods);
+                    logger?.LogInfo("Generate project done.");
                 }
                 else
                 {
