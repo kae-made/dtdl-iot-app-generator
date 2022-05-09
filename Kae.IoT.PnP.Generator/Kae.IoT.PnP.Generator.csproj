@@ -100,6 +100,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>ProgramEdge_cs.tt</DependentUpon>
     </Compile>
+    <Compile Update="Csharp\Service\template\LaunchSettings_json.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LaunchSettings_json.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -185,6 +190,10 @@
     <None Update="Csharp\Edge\template\ProgramEdge_cs.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>ProgramEdge_cs.cs</LastGenOutput>
+    </None>
+    <None Update="Csharp\Service\template\LaunchSettings_json.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>LaunchSettings_json.cs</LastGenOutput>
     </None>
   </ItemGroup>
 

@@ -59,7 +59,7 @@ namespace Kae.IoT.Tools.IoTAppGenerator
             cbGenKind.ItemsSource = kindList;
             tvGenerated.ItemsSource = generatedViewerItems;
 
-            logger = new TextBlockLogger(tbLog, logIsShowLevel, logIsShowTimestamp);
+            logger = new TextBlockLogger(tbLog, logIsShowTimestamp);
         }
 
         private void buttonSelectDTDLFile_Click(object sender, RoutedEventArgs e)
@@ -223,7 +223,7 @@ namespace Kae.IoT.Tools.IoTAppGenerator
 
         private void tvGenerated_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            if (!string.IsNullOrEmpty(((TreeViewData)e.NewValue).FullPath))
+            if ((TreeViewData)e.NewValue != null & !string.IsNullOrEmpty(((TreeViewData)e.NewValue).FullPath))
             {
                 Process.Start("notepad", ((TreeViewData)e.NewValue).FullPath);
             }

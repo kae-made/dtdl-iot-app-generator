@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Kae.IoT.PnP.Generator.Csharp.App.template;
+using Kae.IoT.PnP.Generator.Csharp.Service.template;
 using Kae.Utility.Logging;
 
 namespace Kae.IoT.PnP.Generator.Csharp
@@ -14,6 +15,9 @@ namespace Kae.IoT.PnP.Generator.Csharp
     class CsharpCodeGeneratorNonEdge : CSharpCodeGenerator
     {
         protected static readonly string Worker_cs_FileName = "Worker.cs";
+        protected static readonly string ServicePropertiesDirName = "Properties";
+        protected static readonly string ServiceLaunchSettingsJsonFileName = "launchSettings.json";
+
         public CsharpCodeGeneratorNonEdge(ExeType exeType, string appName, string iotFWProjectPath) : base(exeType, appName, iotFWProjectPath)
         {
         }
@@ -28,6 +32,19 @@ namespace Kae.IoT.PnP.Generator.Csharp
                 this.UserSecretsIed = $"dotnet-{GetProjectNameOnCode()}-{Guid.NewGuid().ToString("D").ToUpper()}";
             }
             await CreateProjectEnvironmentCommon();
+            if (projectExeType== ExeType.Service)
+            {
+                var lsSJsonGenerator = new LaunchSettings_json(ClassName);
+                var lsSJsonContent = lsSJsonGenerator.TransformText();
+                var propDirPath = Path.Join(ProjFolderPath, ServicePropertiesDirName);
+                if (!Directory.Exists(propDirPath))
+                {
+                    Directory.CreateDirectory(propDirPath);
+                }
+                var lsSJsonFilePath = Path.Join(ServicePropertiesDirName, ServiceLaunchSettingsJsonFileName);
+                await WriteToFileAsync(lsSJsonFilePath, lsSJsonContent);
+
+            }
 
             BuildIoTFWLibrary();
         }
