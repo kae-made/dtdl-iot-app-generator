@@ -31,13 +31,19 @@ namespace <#= nameSpace #>
     class <#= d2cDataTypeName #> : Kae.IoT.Framework.IoTDataWithProperties
     {
 <# 
+    var objectTypeTelemetries = new List<(string typeName, string fieldName)>();
     indent = "        ";
     foreach (var telemetryInfo in dtTelemetries.Values) {
         var telemetry = telemetryInfo.Info;
         var fieldDecl = CreateFieldDecl(indentUnit, indent, telemetry.Name, telemetry.Schema);
         var fieldDeclContent = fieldDecl.TransformText(); #>
 <#= fieldDeclContent #>
-<#  }
+<#
+        if (fieldDecl.IsObjectSchema)
+        {
+            objectTypeTelemetries.Add((typeName:fieldDecl.DataTypeNameForObjectSchema, fieldName:fieldDecl.FieldNameForObjectSchema));
+        }
+    }
 #>
 
         public override <#= d2cDataTypeNameForDeserialize #> Deserialize(string json)
@@ -50,6 +56,26 @@ namespace <#= nameSpace #>
             var content = Newtonsoft.Json.JsonConvert.SerializeObject(this);
             return content;
         }
+<#
+        if (objectTypeTelemetries.Count > 0)
+        {
+#>
+
+        public <#= d2cDataTypeName #>()
+        {
+<#
+            foreach (var objFld in objectTypeTelemetries)
+            {
+#>
+            this.<#= objFld.fieldName #> = new <#= objFld.typeName #>();
+<#
+            }
+            objectTypeTelemetries.Clear();
+#>
+        }
+<#
+        }
+#>
     }
 
     class <#= dpDataTypeName #> : Kae.IoT.Framework.IoTData
@@ -60,7 +86,12 @@ namespace <#= nameSpace #>
         var fieldDecl = CreateFieldDecl(indentUnit, indent, prop.Name, prop.Schema);
         var fieldDeclContent = fieldDecl.TransformText(); #>
 <#= fieldDeclContent #>
-<#  }
+<#
+        if (fieldDecl.IsObjectSchema)
+        {
+            objectTypeTelemetries.Add((typeName:fieldDecl.DataTypeNameForObjectSchema, fieldName:fieldDecl.FieldNameForObjectSchema));
+        }
+    }
 #>
 
         public override <#= dpDataTypeNameForDeserialize #> Deserialize(string json)
@@ -73,6 +104,26 @@ namespace <#= nameSpace #>
             var content = Newtonsoft.Json.JsonConvert.SerializeObject(this);
             return content;
         }
+<#
+        if (objectTypeTelemetries.Count > 0)
+        {
+#>
+
+        public <#= dpDataTypeName #>()
+        {
+<#
+            foreach (var objFld in objectTypeTelemetries)
+            {
+#>
+            this.<#= objFld.fieldName #> = new <#= objFld.typeName #>();
+<#
+            }
+            objectTypeTelemetries.Clear();
+#>
+        }
+<#
+        }
+#>
     }
 
     class <#= rpDataTypeName #> : Kae.IoT.Framework.IoTData
@@ -83,7 +134,12 @@ namespace <#= nameSpace #>
         var fieldDecl = CreateFieldDecl(indentUnit, indent, prop.Name, prop.Schema);
         var fieldDeclContent = fieldDecl.TransformText(); #>
 <#= fieldDeclContent #>
-<#  }
+<#
+        if (fieldDecl.IsObjectSchema)
+        {
+            objectTypeTelemetries.Add((typeName:fieldDecl.DataTypeNameForObjectSchema, fieldName:fieldDecl.FieldNameForObjectSchema));
+        }
+    }
 #>
 
         public override <#= rpDataTypeNameForDeserialize #> Deserialize(string json)
@@ -96,6 +152,26 @@ namespace <#= nameSpace #>
             var content = Newtonsoft.Json.JsonConvert.SerializeObject(this);
             return content;
         }
+<#
+        if (objectTypeTelemetries.Count > 0)
+        {
+#>
+
+        public <#= dpDataTypeName #>()
+        {
+<#
+            foreach (var objFld in objectTypeTelemetries)
+            {
+#>
+            this.<#= objFld.fieldName #> = new <#= objFld.typeName #>();
+<#
+            }
+            objectTypeTelemetries.Clear();
+#>
+        }
+<#
+        }
+#>
     }
 
 <#
@@ -114,7 +190,7 @@ namespace <#= nameSpace #>
         if (responsePayload is not null)
         {
             string typeName = $"{GetMethodName(dmsync)}_Response_${responsePayload.Name}";
-            genResponse = TransformCommandPayload(requestPayload, typeName);
+            genResponse = TransformCommandPayload(responsePayload, typeName);
         }
         if ((!string.IsNullOrEmpty(genRequest)) || (!string.IsNullOrEmpty(genResponse)))
         { #>

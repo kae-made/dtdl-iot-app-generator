@@ -2,6 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <Authors>Hiroshi Ota</Authors>
+    <Company>Knowledge &amp; Experience</Company>
+    <PackageProjectUrl>https://github.com/kae-made/dtdl-iot-app-generator/tree/main/Kae.IoT.PnP.Generator</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/kae-made/dtdl-iot-app-generator</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>
@@ -195,6 +201,10 @@
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>LaunchSettings_json.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Csharp\Function\template\" />
   </ItemGroup>
 
 </Project>

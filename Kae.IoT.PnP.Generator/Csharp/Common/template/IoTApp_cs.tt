@@ -41,6 +41,7 @@ namespace <#= nameSpace #>
         public IoTApp(Logger logger = null)
         {
             this.logger = logger;
+            sensingData = new D2CData();
         }
 
         public D2CData GetD2CData()

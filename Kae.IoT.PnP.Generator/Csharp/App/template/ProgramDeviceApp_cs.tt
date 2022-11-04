@@ -34,11 +34,11 @@ namespace <#= nameSpace #>
     {
         static void Main(string[] args)
         {
-            var iotApp = new IoTApp();
+            var iotApp = new IoTApp(ConsoleLogger.CreateLogger());
                         
             iotApp.UserPreInitializeAsync().Wait();
 
-            iotApp.InitializeAsync("config.yaml").Wait();
+            iotApp.InitializeAsync("<#= configFilename #>").Wait();
 
             iotApp.UserPostInitializeAsync().Wait();
 

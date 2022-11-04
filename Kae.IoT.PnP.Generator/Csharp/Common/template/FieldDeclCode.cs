@@ -18,6 +18,9 @@ namespace Kae.IoT.PnP.Generator.Csharp.Common.template
         private GElemDTSchemaInfo schemaInfo;
 
         public string Version { get; set; }
+        public bool IsObjectSchema { get; set; } = false;
+        public string DataTypeNameForObjectSchema { get; set; } = "";
+        public string FieldNameForObjectSchema { get; set; } = "";
 
         public FieldDecl(string indentUnit, string indent, string fieldName, GElemDTSchemaInfo schemaInfo)
         {

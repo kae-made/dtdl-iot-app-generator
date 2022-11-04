@@ -12,9 +12,12 @@ namespace Kae.IoT.PnP.Generator.Csharp.App.template
     partial class ProgramDeviceApp_cs : IVersionedGenerator
     {
         private string nameSpace;
-        public ProgramDeviceApp_cs(string nameSpace)
+        private string configFilename;
+
+        public ProgramDeviceApp_cs(string nameSpace, string configFilename)
         {
             this.nameSpace = nameSpace;
+            this.configFilename = configFilename;
         }
 
         public string Version { get; set; }

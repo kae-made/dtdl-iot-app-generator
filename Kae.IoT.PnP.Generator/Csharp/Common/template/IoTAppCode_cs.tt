@@ -31,7 +31,6 @@ namespace <#= nameSpace #>
         public AppDTDesiredProperties DesiredProperties { get; set; }
         public AppDTReporetedProperties ReportedProperties { get; set; }
 
-        
         <# foreach (var dmName in syncDirectMethods.Keys) { #>
         public string <#= dmName #>(string payload)
         {
@@ -102,28 +101,33 @@ namespace <#= nameSpace #>
         public async Task DoWorkAsync()
         {
             // Sample Logic
-            // ReportedProperties.Status = "running";
-            // await iotClient.UpdateDeviceTwinsReportedPropertiesAsync(ReportedProperties);
-            // var task = new Task(async () =>
-            // {
-            //    var rand = new Random(DateTime.Now.Millisecond);
-            //    var sensingInterval = TimeSpan.FromMilliseconds(1000);
-            //    while (true)
-            //    {
-            //        // Samples
-            //        // await iotClient.UpdateD2CDataAsync(sensingData);
-            //        await Task.Delay(sensingInterval);
-            //        lock (sensingData)
-            //        {
-            //            // implement sensing data update logic                        
-            //        }
-            //    }
-            // });
-            // task.Start();
-            // iotClient.StartSendD2CMessageAsync(TimeSpan.FromSeconds(10));
-            // 
-            // var key = Console.ReadKey();
-            // iotClient.StopSendD2CMessage();
+            await iotClient.UpdateDeviceTwinsReportedPropertiesAsync(ReportedProperties);
+            var task = new Task(async () =>
+            {
+                var rand = new Random(DateTime.Now.Millisecond);
+                var updatingInterval = TimeSpan.FromMilliseconds(1000);
+                while (true)
+                {
+                    // Samples
+                    lock (sensingData)
+                    {
+                        // implement sensing data update logic
+                        // sensingData.Environment.Temperature = 27;
+                        // sensingData.Environment.Humidity = 57.4;
+                        // sensingData.Environment.AtmosphericPressure = 1003.1;
+                        // sensingData.Environment.CO2Concentration = 300;
+                        // sensingData.Environment.Brightness = 739.2;
+                        // sensingData.Environment.MeasuredTime = DateTime.Now;
+                    }
+                    await iotClient.UpdateD2CDataAsync(sensingData);
+                    await Task.Delay(updatingInterval);
+                }
+            });
+            task.Start();
+            iotClient.StartSendD2CMessageAsync(TimeSpan.FromSeconds(10));
+
+            var key = Console.ReadKey();
+            iotClient.StopSendD2CMessage();
         }
     }
 }

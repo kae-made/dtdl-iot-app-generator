@@ -55,7 +55,7 @@ namespace Kae.IoT.PnP.Generator.Csharp
             switch (projectExeType)
             {
                 case ExeType.DeviceApp:
-                    var generatorDeviceApp = new ProgramDeviceApp_cs(NameSpace) { Version = currentVersion };
+                    var generatorDeviceApp = new ProgramDeviceApp_cs(NameSpace, configFileName) { Version = currentVersion };
                     content = generatorDeviceApp.TransformText();
                     break;
                 case ExeType.Service:

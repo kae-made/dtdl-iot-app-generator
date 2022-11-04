@@ -47,8 +47,11 @@
 <#              }
                 else if (schema is DTObjectInfo)
                 {
+                    IsObjectSchema = true;
                     var objectSchema = (DTObjectInfo)schema;
                     var objectSchemaTypeName = fieldName + "DataType";
+                    DataTypeNameForObjectSchema = objectSchemaTypeName;
+                    FieldNameForObjectSchema = fieldName;
                     var objGen = CreateObjectTypeDecl(objectSchema, "public", objectSchemaTypeName, indent, indentUnit);
                     var objDeclContent = objGen.TransformText();
                     #>

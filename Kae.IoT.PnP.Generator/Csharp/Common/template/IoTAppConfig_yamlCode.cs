@@ -17,6 +17,10 @@ namespace Kae.IoT.PnP.Generator.Csharp.Common.template
         {
             this.exeType = exeType;
             this.modelId = modelId;
+            if (!this.modelId.StartsWith("dtmi:"))
+            {
+                this.modelId = $"dtmi:{modelId}";
+            }
         }
 
         private bool IsEdge() { return exeType == ExeType.Edge; }
