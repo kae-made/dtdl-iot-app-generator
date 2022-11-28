@@ -30,16 +30,16 @@ namespace Kae.IoT.PnP.Generator.Csharp.Common.template
             {
                 case ExeType.DeviceApp:
                     this.sdkName = "Microsoft.NET.Sdk";
-                    this.targetFramework = "net5.0";
+                    this.targetFramework = "net6.0";
                     this.outputType = "Exe";
                     break;
                 case ExeType.Service:
                     this.sdkName = "Microsoft.NET.Sdk.Worker";
-                    this.targetFramework = "net5.0";
+                    this.targetFramework = "net6.0";
                     break;
                 case ExeType.Edge:
                     this.sdkName = "Microsoft.NET.Sdk";
-                    this.targetFramework = "netcoreapp3.1";
+                    this.targetFramework = "net6.0";
                     this.outputType = "Exe";
                     break;
             }
