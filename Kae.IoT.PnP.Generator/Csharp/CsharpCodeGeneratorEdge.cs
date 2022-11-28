@@ -17,16 +17,16 @@ namespace Kae.IoT.PnP.Generator.Csharp
     class CsharpCodeGeneratorEdge : CSharpCodeGenerator
     {
         private static IDictionary<string, string> dockerSdkImages = new Dictionary<string, string> {
-            { "amd64", "mcr.microsoft.com/dotnet/core/sdk:3.1-buster" },
-            {"arm32v7","mcr.microsoft.com/dotnet/core/sdk:3.1-buster-arm32v7" },
-            {"arm64v8","mcr.microsoft.com/dotnet/core/sdk:3.1-buster-arm64v8" },
+            { "amd64", "mcr.microsoft.com/dotnet/sdk/sdk:6.0.403-jammy-amd64" },
+            {"arm32v7","mcr.microsoft.com/dotnet/sdk:6.0.403-bullseye-slim-arm32v7" },
+            {"arm64v8","mcr.microsoft.com/dotnet/sdk:6.0.403-bullseye-slim-arm64v8," },
             {"windows-amd64","mcr.microsoft.com/dotnet/core/sdk:3.1-nanoserver-1809" }
         };
         private static IDictionary<string, string> dockerRuntimeImages = new Dictionary<string, string>
         {
-            {"amd64","mcr.microsoft.com/dotnet/core/runtime:3.1-buster-slim" },
-            {"arm32v7","mcr.microsoft.com/dotnet/core/runtime:3.1-buster-slim-arm32v7" },
-            {"arm64v8","mcr.microsoft.com/dotnet/core/runtime:3.1-buster-slim-arm64v8" },
+            {"amd64","mcr.microsoft.com/dotnet/runtime:6.0.11-jammy-amd64" },
+            {"arm32v7","mcr.microsoft.com/dotnet/runtime:6.0.11-bullseye-slim-arm32v7" },
+            {"arm64v8","mcr.microsoft.com/dotnet/runtime:6.0.11-bullseye-slim-arm64v8" },
             {"windows-amd64","mcr.microsoft.com/dotnet/core/runtime:3.1-nanoserver-1809" }
         };
         private static IEnumerable<string> archNames = new List<string> { "amd64", "arm32v7", "arm64v8", "windows-amd64" };
@@ -54,7 +54,9 @@ namespace Kae.IoT.PnP.Generator.Csharp
 
         public CsharpCodeGeneratorEdge(string appName, string iotFWProjectPath, Logger logger) :base(ExeType.Edge,appName,iotFWProjectPath,logger)
         {
-
+            string codeBase = Assembly.GetExecutingAssembly().Location;
+            var dirInfo = new DirectoryInfo(codeBase);
+            genTemplateFolderPath = Path.Join(dirInfo.Parent.FullName, Path.Join(origFilesFolderPath));
         }
 
         protected override async Task CreateProjectEnvironment()
