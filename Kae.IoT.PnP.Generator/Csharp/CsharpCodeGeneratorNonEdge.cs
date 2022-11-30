@@ -23,6 +23,7 @@ namespace Kae.IoT.PnP.Generator.Csharp
         }
         public CsharpCodeGeneratorNonEdge(ExeType exeType, string appName, string iotFWProjectPath, Logger logger) : base(exeType, appName, iotFWProjectPath, logger)
         {
+            this.factoryCreationMethod = "CreateIoTClientForDevice";
         }
 
         protected override async Task CreateProjectEnvironment()

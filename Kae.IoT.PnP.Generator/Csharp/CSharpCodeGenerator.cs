@@ -31,6 +31,7 @@ namespace Kae.IoT.PnP.Generator.Csharp
         public string GenFolderPath { get; set; }
         public string ClassName { get; set; }
         public string AppConnectorName { get; set; }
+        public string factoryCreationMethod { get; set; }
 
         public string ProjFolderPath { get; set; }
         public string IndentUnit { get; set; }
@@ -51,7 +52,6 @@ namespace Kae.IoT.PnP.Generator.Csharp
             this.projectExeType = exeType;
             this.iotFrameworkProjectPath = iotFrameworkProjectPath;
             this.ProjectName = appName;
-
 
             string codeBase = Assembly.GetExecutingAssembly().Location;
             var dirInfo = new DirectoryInfo(codeBase);
@@ -79,7 +79,7 @@ namespace Kae.IoT.PnP.Generator.Csharp
             await GenerateAppIoTDataCS(dtTelemetries, dtDesiredProperties, dtReporedProperties, dtSyncDirectMethods, dtAsyncDirectMethods);
             
             await GenerateIIoTAppCS(dtSyncDirectMethods, dtAsyncDirectMethods);
-            await GenerateIoTAppCS();
+            await GenerateIoTAppCS(factoryCreationMethod);
             await GenerateIoTAppCodeCS(dtSyncDirectMethods, dtAsyncDirectMethods);
             await GenerateIoTAppConnectorCS(dtSyncDirectMethods, dtAsyncDirectMethods);
             await GenerateProgramCS();
@@ -295,9 +295,9 @@ namespace Kae.IoT.PnP.Generator.Csharp
             await WriteToFileAsync(IIoTApp_cs_FileName, codeContent);
         }
 
-        public async Task GenerateIoTAppCS()
+        public async Task GenerateIoTAppCS(string factoryCreationMethodName)
         {
-            var generator = new IoTApp_cs(NameSpace, AppConnectorName) { Version = currentVersion };
+            var generator = new IoTApp_cs(NameSpace, AppConnectorName, factoryCreationMethodName) { Version = currentVersion };
             var codeContent = generator.TransformText();
             await WriteToFileAsync(IoTApp_cs_FileName, codeContent);
         }

@@ -13,11 +13,13 @@ namespace Kae.IoT.PnP.Generator.Csharp.Common.template
     {
         private string nameSpace;
         private string appConnectorName;
+        private string factoryCreationMethod;
 
-        public IoTApp_cs(string nameSpace, string appConnectorName)
+        public IoTApp_cs(string nameSpace, string appConnectorName, string factoryCreationMethod)
         {
             this.nameSpace = nameSpace;
             this.appConnectorName = appConnectorName;
+            this.factoryCreationMethod = factoryCreationMethod;
         }
 
         public string Version { get; set; }

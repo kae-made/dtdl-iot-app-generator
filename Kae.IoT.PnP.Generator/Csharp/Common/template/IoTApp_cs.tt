@@ -61,7 +61,7 @@ namespace <#= nameSpace #>
 
             var iotAppConfig = IoTAppConfigResolver.ResolveConfig(configYamlFile);
             appConnector = new <#= appConnectorName #>(iotAppConfig, this);
-            iotClient = IoTClientFactory.CreateIoTClientForDevice(appConnector, logger);
+            iotClient = IoTClientFactory.<#= factoryCreationMethod #>(appConnector, logger);
 
             await iotClient.OpenAsync();
 

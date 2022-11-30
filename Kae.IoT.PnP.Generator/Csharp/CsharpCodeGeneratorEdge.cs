@@ -54,6 +54,8 @@ namespace Kae.IoT.PnP.Generator.Csharp
 
         public CsharpCodeGeneratorEdge(string appName, string iotFWProjectPath, Logger logger) :base(ExeType.Edge,appName,iotFWProjectPath,logger)
         {
+            this.factoryCreationMethod = "CreateIoTClientForEdge";
+
             string codeBase = Assembly.GetExecutingAssembly().Location;
             var dirInfo = new DirectoryInfo(codeBase);
             genTemplateFolderPath = Path.Join(dirInfo.Parent.FullName, Path.Join(origFilesFolderPath));
