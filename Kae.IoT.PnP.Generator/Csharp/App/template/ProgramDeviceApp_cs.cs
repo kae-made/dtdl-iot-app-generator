@@ -55,13 +55,14 @@ namespace Kae.IoT.PnP.Generator.Csharp.App.template
 using Kae.Utility.Logging;
 using System;
 using System.IO;
+using System.Runtime.Loader;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace ");
             
-            #line 27 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\App\template\ProgramDeviceApp_cs.tt"
+            #line 28 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\App\template\ProgramDeviceApp_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(nameSpace));
             
             #line default
@@ -82,7 +83,7 @@ namespace ");
 
             iotApp.InitializeAsync(""");
             
-            #line 41 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\App\template\ProgramDeviceApp_cs.tt"
+            #line 42 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\App\template\ProgramDeviceApp_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(configFilename));
             
             #line default
@@ -91,7 +92,12 @@ namespace ");
 
             iotApp.UserPostInitializeAsync().Wait();
 
-            iotApp.DoWorkAsync().Wait();
+            var cancellationTokenSource = new CancellationTokenSource();
+            iotApp.DoWorkAsync(cancellationTokenSource).Wait();
+
+            AssemblyLoadContext.Default.Unloading += (ctx) => cancellationTokenSource.Cancel();
+            Console.CancelKeyPress += (sender, cpe) => cancellationTokenSource.Cancel();
+            WhenCancelled(cancellationTokenSource.Token).Wait();
 
             iotApp.UserPreTerminateAsync().Wait();
 
@@ -100,8 +106,13 @@ namespace ");
             iotApp.UserPostTerminateAsync().Wait();
         }
 
+        public static Task WhenCancelled(CancellationToken cancellationToken)
+        {
+            var tcs = new TaskCompletionSource<bool>();
+            cancellationToken.Register(s => ((TaskCompletionSource<bool>)s).SetResult(true), tcs);
+            return tcs.Task;
+        }
     }
-
 }
 
 ");

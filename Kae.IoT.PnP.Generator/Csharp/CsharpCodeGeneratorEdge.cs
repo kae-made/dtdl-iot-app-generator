@@ -45,14 +45,14 @@ namespace Kae.IoT.PnP.Generator.Csharp
         protected static readonly string[] origFilesFolderPath = new string[] { "Csharp", "Edge", "template" };
         protected string origContentsBasePath = "";
 
-        public CsharpCodeGeneratorEdge(string appName, string iotFWProjectPath) : base(ExeType.Edge, appName, iotFWProjectPath)
+        public CsharpCodeGeneratorEdge(string appName, string iotFWProjectPath, bool useNuGetForIoTFW, IList<string> importLibraries) : base(ExeType.Edge, appName, iotFWProjectPath, useNuGetForIoTFW, importLibraries)
         {
             string codeBase = Assembly.GetExecutingAssembly().Location;
             var dirInfo = new DirectoryInfo(codeBase);
             genTemplateFolderPath = Path.Join(dirInfo.Parent.FullName, Path.Join(origFilesFolderPath));
         }
 
-        public CsharpCodeGeneratorEdge(string appName, string iotFWProjectPath, Logger logger) :base(ExeType.Edge,appName,iotFWProjectPath,logger)
+        public CsharpCodeGeneratorEdge(string appName, string iotFWProjectPath, bool useNuGetForIoTFW, IList<string> importLibraries, Logger logger) : base(ExeType.Edge, appName, iotFWProjectPath, useNuGetForIoTFW, importLibraries, logger)
         {
             this.factoryCreationMethod = "CreateIoTClientForEdge";
 
@@ -67,17 +67,19 @@ namespace Kae.IoT.PnP.Generator.Csharp
 
             await CreateDockerItems();
 
-
-            string destIoTFWDllPath = Path.Join(ProjFolderPath, iotFWDllFileName);
-            string destLoggingFWDllPath = Path.Join(ProjFolderPath, loggingFWDllFileName);
-            if ((!File.Exists(destIoTFWDllPath)) && (!File.Exists(destLoggingFWDllPath)))
+            if (!useNuGetForIoTFW)
             {
-                if (BuildIoTFWLibrary())
+                string destIoTFWDllPath = Path.Join(ProjFolderPath, iotFWDllFileName);
+                string destLoggingFWDllPath = Path.Join(ProjFolderPath, loggingFWDllFileName);
+                if ((!File.Exists(destIoTFWDllPath)) && (!File.Exists(destLoggingFWDllPath)))
                 {
-                    var iotFWDllPath = GetIoTFrameworkDllPath();
-                    var loggingDllPath = GetLoggingDllPath();
-                    File.Copy(iotFWDllPath, destIoTFWDllPath);
-                    File.Copy(loggingDllPath, destLoggingFWDllPath);
+                    if (BuildIoTFWLibrary())
+                    {
+                        var iotFWDllPath = GetIoTFrameworkDllPath();
+                        var loggingDllPath = GetLoggingDllPath();
+                        File.Copy(iotFWDllPath, destIoTFWDllPath);
+                        File.Copy(loggingDllPath, destLoggingFWDllPath);
+                    }
                 }
             }
         }

@@ -113,7 +113,10 @@ namespace Kae.IoT.Tools.IoTAppGenerator
                 if (folderDialog.ShowDialog() == CommonFileDialogResult.Ok)
                 {
                     tbGenFolderPath.Text = folderDialog.FileName;
-                    buttonSelectIoTFWPath.IsEnabled = true;
+                    //buttonSelectIoTFWPath.IsEnabled = true;
+                    cbUseIoTFWPackage.IsEnabled = true;
+                    cbGenKind.IsEnabled = true;
+                    cbLanguage.IsEnabled = true;
                     buttonRefleshGeneratedViewer.IsEnabled = true;
                     RefleshGeneratedViewer();
                 }
@@ -147,7 +150,21 @@ namespace Kae.IoT.Tools.IoTAppGenerator
             var selectedExeType = cbGenKind.SelectedItem.ToString();
             var selectedInterface = lbInterfaces.SelectedItem.ToString();
             var exeType = appKindsForLang[selectedLanguage][selectedExeType];
-            await generator.GenerateProject(selectedInterface, tbGenFolderPath.Text, tbAppName.Text, tbNamespace.Text, exeType, tbIoTFWPath.Text);
+            bool useNuGetIoTFW = cbUseIoTFWPackage.IsChecked.Value;
+            var importLibraries = new List<string>();
+            if (useNuGetIoTFW)
+            {
+                importLibraries.Add("Kae.IoT.Framework;1.2.0");
+            }
+            if (!string.IsNullOrEmpty(tbImportPacakgeNames.Text))
+            {
+                var ilibs = tbImportPacakgeNames.Text.Split(new char[] { ',' });
+                foreach (var ilib in ilibs)
+                {
+                    importLibraries.Add(ilib);
+                }
+            }
+            await generator.GenerateProject(selectedInterface, tbGenFolderPath.Text, tbAppName.Text, tbNamespace.Text, exeType, tbIoTFWPath.Text, useNuGetIoTFW, importLibraries);
 
             RefleshGeneratedViewer();
         }
@@ -229,6 +246,46 @@ namespace Kae.IoT.Tools.IoTAppGenerator
             }
         }
 
+        private void cbUseIoTFWPackage_Checked(object sender, RoutedEventArgs e)
+        {
+            if (cbUseIoTFWPackage == null || buttonSelectIoTFWPath == null)
+            {
+                return;
+            }
+            if (cbUseIoTFWPackage.IsChecked == true)
+            {
+                buttonSelectIoTFWPath.IsEnabled = false;
+            }
+            else
+            {
+                buttonSelectIoTFWPath.IsEnabled = true;
+            }
+        }
+
+        private void buttonAddPackage_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(tbPackageName.Text))
+            {
+                MessageBox.Show("Please input nuget package name with version! 'package-name;version'");
+                return;
+            }
+            var libver = tbPackageName.Text.Split(new char[] { ';' });
+            if (libver.Length != 2)
+            {
+                MessageBox.Show("package name should be <packagename>;<version>");
+                return;
+            }
+            if (tbImportPacakgeNames.Text.IndexOf(tbPackageName.Text) >= 0)
+            {
+                MessageBox.Show($"'{tbPackageName.Text}' has been registered!");
+                return;
+            }
+            if (!string.IsNullOrEmpty(tbImportPacakgeNames.Text))
+            {
+                tbImportPacakgeNames.Text += ",";
+            }
+            tbImportPacakgeNames.Text += tbPackageName.Text;
+        }
     }
 
     class TextBlockLogger : Logger

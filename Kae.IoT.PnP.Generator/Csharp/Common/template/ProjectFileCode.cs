@@ -18,13 +18,17 @@ namespace Kae.IoT.PnP.Generator.Csharp.Common.template
         private string targetFramework;
         private string outputType;
         private string iotFrameworkProjectPath;
+        private IList<string> importLibraries;
+        private bool useNuGetForIoTFW;
 
-        public ProjectFile(ExeType exeType,string configFileName, string ioTFrameworkProjectPath, string userSecretsId = null)
+        public ProjectFile(ExeType exeType,string configFileName, string ioTFrameworkProjectPath, IList<string> importLibraries, bool useNuGetForIoTFW, string userSecretsId = null)
         {
             this.exeType = exeType;
             this.configFileName = configFileName;
             this.userSecretsId = userSecretsId;
             this.iotFrameworkProjectPath = ioTFrameworkProjectPath;
+            this.importLibraries = importLibraries;
+            this.useNuGetForIoTFW = useNuGetForIoTFW;
 
             switch (exeType)
             {
@@ -43,6 +47,8 @@ namespace Kae.IoT.PnP.Generator.Csharp.Common.template
                     this.outputType = "Exe";
                     break;
             }
+
+            this.importLibraries = importLibraries;
         }
 
         private bool IsDeviceApp() { return exeType == ExeType.DeviceApp; }
@@ -76,6 +82,11 @@ namespace Kae.IoT.PnP.Generator.Csharp.Common.template
             if (IsDeviceApp() || IsService())
             {
 
+            }
+
+            foreach (var ilib in importLibraries)
+            {
+                string[] lib = ilib.Split(new char[] { ';' });
             }
         }
     }

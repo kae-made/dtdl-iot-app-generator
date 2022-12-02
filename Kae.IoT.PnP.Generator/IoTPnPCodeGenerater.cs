@@ -14,7 +14,7 @@ using Kae.Utility.Logging;
 
 namespace Kae.IoT.PnP.Generator
 {
-    public class IoTPnPCodeGenerater: IVersionedGenerator
+    public class IoTPnPCodeGenerater : IVersionedGenerator
     {
         private List<string> modelJson;
         private Dictionary<string, GElemDTInterfaceInfo> dtInterfaces;
@@ -55,7 +55,7 @@ namespace Kae.IoT.PnP.Generator
             this.logger = logger;
         }
 
-        
+
 
         public async Task LoadModels(List<string> modelFiles, bool clearModels = false)
         {
@@ -168,12 +168,12 @@ namespace Kae.IoT.PnP.Generator
             {
                 if (item.Value.EntityKind == DTEntityKind.Component)
                 {
-                    dtComponents.Add(item.Key.AbsolutePath,new GElemDTComponentInfo() { Dtmi = item.Key, Info = (DTComponentInfo)item.Value });
+                    dtComponents.Add(item.Key.AbsolutePath, new GElemDTComponentInfo() { Dtmi = item.Key, Info = (DTComponentInfo)item.Value });
                 }
             }
         }
 
-        public async Task GenerateProject(string interfaceName, string genFolderPath, string appName, string nameSpace, string exeType, string ioTFrameworkProjectPath)
+        public async Task GenerateProject(string interfaceName, string genFolderPath, string appName, string nameSpace, string exeType, string ioTFrameworkProjectPath, bool useNuGetForIoTFW, IList<string> importLibraries)
         {
             try
             {
@@ -196,7 +196,7 @@ namespace Kae.IoT.PnP.Generator
                     logger?.LogInfo("Picking commands...");
                     PickupCommands(itemInterface);
 
-                    var csharpGenerator = CSharpCodeGenerator.CreateGenerator(genFolderPath, interfaceName, appName, nameSpace, exeType, ioTFrameworkProjectPath, logger);
+                    var csharpGenerator = CSharpCodeGenerator.CreateGenerator(genFolderPath, interfaceName, appName, nameSpace, exeType, ioTFrameworkProjectPath, useNuGetForIoTFW, importLibraries, logger);
                     logger?.LogInfo("Generating project...");
                     await csharpGenerator.Generate(dtInterfaces, dtTelemetries, dtDesiredProperties, dtReporedProperties, dtSyncDirectMethods, dtAsyncDirectMethods);
                     logger?.LogInfo("Generate project done.");
@@ -214,7 +214,7 @@ namespace Kae.IoT.PnP.Generator
 
         public void Prototype()
         {
-            foreach(var p in dtReporedProperties.Values)
+            foreach (var p in dtReporedProperties.Values)
             {
                 var schema = p.Info.Schema;
                 if (schema is DTEnumInfo)

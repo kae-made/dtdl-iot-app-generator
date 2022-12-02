@@ -20,6 +20,7 @@
 using Kae.Utility.Logging;
 using System;
 using System.IO;
+using System.Runtime.Loader;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using System.Threading.Tasks;
@@ -42,7 +43,12 @@ namespace <#= nameSpace #>
 
             iotApp.UserPostInitializeAsync().Wait();
 
-            iotApp.DoWorkAsync().Wait();
+            var cancellationTokenSource = new CancellationTokenSource();
+            iotApp.DoWorkAsync(cancellationTokenSource).Wait();
+
+            AssemblyLoadContext.Default.Unloading += (ctx) => cancellationTokenSource.Cancel();
+            Console.CancelKeyPress += (sender, cpe) => cancellationTokenSource.Cancel();
+            WhenCancelled(cancellationTokenSource.Token).Wait();
 
             iotApp.UserPreTerminateAsync().Wait();
 
@@ -51,7 +57,12 @@ namespace <#= nameSpace #>
             iotApp.UserPostTerminateAsync().Wait();
         }
 
+        public static Task WhenCancelled(CancellationToken cancellationToken)
+        {
+            var tcs = new TaskCompletionSource<bool>();
+            cancellationToken.Register(s => ((TaskCompletionSource<bool>)s).SetResult(true), tcs);
+            return tcs.Task;
+        }
     }
-
 }
 

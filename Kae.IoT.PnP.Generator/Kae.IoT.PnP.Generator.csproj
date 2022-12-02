@@ -1,13 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <Authors>Hiroshi Ota</Authors>
     <Company>Knowledge &amp; Experience</Company>
     <PackageProjectUrl>https://github.com/kae-made/dtdl-iot-app-generator/tree/main/Kae.IoT.PnP.Generator</PackageProjectUrl>
     <RepositoryUrl>https://github.com/kae-made/dtdl-iot-app-generator</RepositoryUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <Version>1.2.0</Version>
+    <Copyright>Copyright (c) Knowledge &amp; Experience. All rights reserved.</Copyright>
+    <PackageIcon>kae-log-no-chart-128.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -205,6 +208,13 @@
 
   <ItemGroup>
     <Folder Include="Csharp\Function\template\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\..\OneDrive\画像\kae-log-no-chart-128.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

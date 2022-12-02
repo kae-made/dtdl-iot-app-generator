@@ -41,24 +41,29 @@ namespace Kae.IoT.PnP.Generator.Csharp
         protected static readonly string currentVersion = "0.1.1";
         protected string genTemplateFolderPath;
         protected string iotFrameworkProjectPath;
+        protected bool useNuGetForIoTFW;
+        protected IList<string> importLibraries;
 
         protected ExeType projectExeType;
 
         protected Logger logger;
 
-        public CSharpCodeGenerator(ExeType exeType, string appName, string iotFrameworkProjectPath)
+        public CSharpCodeGenerator(ExeType exeType, string appName, string iotFrameworkProjectPath, bool useNuGetForIoTFW, IList<string> importLibraries)
         {
             Version = currentVersion;
             this.projectExeType = exeType;
             this.iotFrameworkProjectPath = iotFrameworkProjectPath;
             this.ProjectName = appName;
 
+            this.useNuGetForIoTFW = useNuGetForIoTFW;
+            this.importLibraries = importLibraries;
+
             string codeBase = Assembly.GetExecutingAssembly().Location;
             var dirInfo = new DirectoryInfo(codeBase);
             genTemplateFolderPath = Path.Join(dirInfo.Parent.FullName, Path.Join(templateFolderPath));
         }
 
-        public CSharpCodeGenerator(ExeType exeType, string appName, string iotFrameworkProjectPath, Logger logger):this(exeType,appName,iotFrameworkProjectPath)
+        public CSharpCodeGenerator(ExeType exeType, string appName, string iotFrameworkProjectPath, bool useNuGetForIoTFW, IList<string> importLibraries, Logger logger) : this(exeType, appName, iotFrameworkProjectPath, useNuGetForIoTFW, importLibraries)
         {
             this.logger = logger;
         }
@@ -77,7 +82,7 @@ namespace Kae.IoT.PnP.Generator.Csharp
             await CreateProjectEnvironment();
 
             await GenerateAppIoTDataCS(dtTelemetries, dtDesiredProperties, dtReporedProperties, dtSyncDirectMethods, dtAsyncDirectMethods);
-            
+
             await GenerateIIoTAppCS(dtSyncDirectMethods, dtAsyncDirectMethods);
             await GenerateIoTAppCS(factoryCreationMethod);
             await GenerateIoTAppCodeCS(dtSyncDirectMethods, dtAsyncDirectMethods);
@@ -86,7 +91,7 @@ namespace Kae.IoT.PnP.Generator.Csharp
             await GenerateSpecificCode();
         }
 
-        protected static readonly string [] templateFolderPath = new string[] { "Kae", "IoT", "PnP", "Generator", "Csharp", "DeviceApp", "template" };
+        protected static readonly string[] templateFolderPath = new string[] { "Kae", "IoT", "PnP", "Generator", "Csharp", "DeviceApp", "template" };
         private static readonly string csProjFileTemplateName = "csprojfile.txt";
         protected static readonly string csProjFileExtName = ".csproj";
         private static readonly string configFileTemplateName = "config.yaml.txt";
@@ -110,7 +115,7 @@ namespace Kae.IoT.PnP.Generator.Csharp
         protected static readonly string loggingFWDllFileName = "Kae.Utility.Logging.dll";
 
 
-        public static CSharpCodeGenerator CreateGenerator(string genFolderPath, string modelId, string appName, string nameSpace, string exeTypeParam, string ioTFrameworkProjectPath, Logger logger=null)
+        public static CSharpCodeGenerator CreateGenerator(string genFolderPath, string modelId, string appName, string nameSpace, string exeTypeParam, string ioTFrameworkProjectPath, bool useNuGetForIoTFW, IList<string> importLibraries, Logger logger = null)
         {
             ExeType exeType = ExeType.DeviceApp;
             switch (exeTypeParam.ToLower())
@@ -133,10 +138,10 @@ namespace Kae.IoT.PnP.Generator.Csharp
             {
                 case ExeType.DeviceApp:
                 case ExeType.Service:
-                    generator = new CsharpCodeGeneratorNonEdge(exeType, appName, ioTFrameworkProjectPath, logger) { GenFolderPath = genFolderPath, ModelId = modelId };
+                    generator = new CsharpCodeGeneratorNonEdge(exeType, appName, ioTFrameworkProjectPath, useNuGetForIoTFW, importLibraries, logger) { GenFolderPath = genFolderPath, ModelId = modelId };
                     break;
                 case ExeType.Edge:
-                    generator = new CsharpCodeGeneratorEdge(appName, ioTFrameworkProjectPath, logger) { GenFolderPath = genFolderPath, ModelId = modelId };
+                    generator = new CsharpCodeGeneratorEdge(appName, ioTFrameworkProjectPath, useNuGetForIoTFW, importLibraries, logger) { GenFolderPath = genFolderPath, ModelId = modelId };
                     break;
             }
             generator.NameSpace = $"{nameSpace}.{generator.GetProjectNameOnCode()}";
@@ -155,7 +160,7 @@ namespace Kae.IoT.PnP.Generator.Csharp
             }
             var csharpProjFileName = projName + csProjFileExtName;
 
-            var projFileGenerator = new ProjectFile(projectExeType, configFileName, iotFrameworkProjectPath, UserSecretsIed);
+            var projFileGenerator = new ProjectFile(projectExeType, configFileName, iotFrameworkProjectPath, importLibraries, useNuGetForIoTFW, UserSecretsIed);
             var content = projFileGenerator.TransformText();
             await WriteToFileAsync(csharpProjFileName, content);
 
@@ -187,7 +192,7 @@ namespace Kae.IoT.PnP.Generator.Csharp
         {
             return Path.Join(iotFrameworkProjectPath, BuildDLLPath, loggingFWDllFileName); ;
         }
-        
+
         public async Task CreateProjectEnvironmentOld()
         {
             var projName = "";
@@ -214,7 +219,7 @@ namespace Kae.IoT.PnP.Generator.Csharp
 
         protected async Task BuildProjectFileItem(string folderName, string generatedFileName, string originalFileName)
         {
-            
+
             var generatedFilePath = Path.Join(folderName, generatedFileName);
             if (!File.Exists(generatedFilePath))
             {
@@ -316,7 +321,7 @@ namespace Kae.IoT.PnP.Generator.Csharp
             await WriteToFileAsync($"{AppConnectorName}.cs", codeContent);
         }
 
-        public  async Task GenerateProgramCS()
+        public async Task GenerateProgramCS()
         {
             //var generator = new ProgramDeviceApp_cs(NameSpace) { Version = currentVersion };
             //var codeContent = generator.TransformText();
@@ -352,25 +357,32 @@ namespace Kae.IoT.PnP.Generator.Csharp
             if (dataSchema is DTStringInfo)
             {
                 typeName = "string";
-            } else if (dataSchema is DTBooleanInfo)
+            }
+            else if (dataSchema is DTBooleanInfo)
             {
                 typeName = "bool";
-            } else if (dataSchema is DTIntegerInfo)
+            }
+            else if (dataSchema is DTIntegerInfo)
             {
                 typeName = "int";
-            } else if (dataSchema is DTLongInfo)
+            }
+            else if (dataSchema is DTLongInfo)
             {
                 typeName = "long";
-            } else if (dataSchema is DTFloatInfo)
+            }
+            else if (dataSchema is DTFloatInfo)
             {
                 typeName = "float";
-            }else if (dataSchema is DTDoubleInfo)
+            }
+            else if (dataSchema is DTDoubleInfo)
             {
                 typeName = "double";
-            }else if (dataSchema is DTDateInfo || dataSchema is DTTimeInfo ||dataSchema is DTDateTimeInfo)
+            }
+            else if (dataSchema is DTDateInfo || dataSchema is DTTimeInfo || dataSchema is DTDateTimeInfo)
             {
                 typeName = "DateTime";
-            }else if (dataSchema is DTDurationInfo)
+            }
+            else if (dataSchema is DTDurationInfo)
             {
                 typeName = "TimeSpan";
             }

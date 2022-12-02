@@ -44,22 +44,26 @@ namespace <#= nameSpace #>
             {
                 switch (methodRequest.Name)
                 {
-        <# 
-            foreach (var dmName in syncDirectMethods.Keys) { #>
+<# 
+            foreach (var dmName in syncDirectMethods.Keys)
+            {
+#>
                     case "<#= dmName #>":
                         result = System.Text.Encoding.UTF8.GetBytes(iotApp.<#= dmName #>(methodRequest.DataAsJson));
                         break;
-        <# 
+<# 
         }
-        #>
-        <# 
-            foreach (var dmName in asyncDirectMethods.Keys) { #>
+#>
+<# 
+            foreach (var dmName in asyncDirectMethods.Keys)
+            {
+#>
                     case "<#= dmName #>":
                         result = System.Text.Encoding.UTF8.GetBytes(iotApp.<#= dmName #>(methodRequest.DataAsJson));
                         break;
-        <# 
+<# 
         }
-        #>
+#>
                     default:
                         statusCode = (int)System.Net.HttpStatusCode.BadRequest;
                         break;

@@ -38,10 +38,11 @@ namespace <#= nameSpace #>
         {
             IoTApp iotApp = new IoTApp();
             iotApp.UserPreInitializeAsync().Wait();
-            iotApp.InitializeAsync("config.yaml").Wait();
+            iotApp.InitializeAsync("iot-app-config.yaml").Wait();
             iotApp.UserPostInitializeAsync().Wait();
 
-            iotApp.DoWorkAsync().Wait();
+            var cancellationTokenSource = new CancellationTokenSource();
+            iotApp.DoWorkAsync(cancellationTokenSource).Wait();
 
             // Wait until the app unloads or is cancelled
             var cts = new CancellationTokenSource();

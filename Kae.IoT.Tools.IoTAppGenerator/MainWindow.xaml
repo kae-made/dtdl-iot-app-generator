@@ -7,7 +7,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Kae.IoT.Tools.IoTAppGenerator"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="480" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
@@ -50,32 +50,39 @@
                         <ColumnDefinition Width="0.65*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="27"/>
+                        <RowDefinition Height="27"/>
+                        <RowDefinition Height="27"/>
+                        <RowDefinition Height="27"/>
+                        <RowDefinition Height="27"/>
+                        <RowDefinition Height="27"/>
+                        <RowDefinition Height="27"/>
+                        <RowDefinition Height="27"/>
+                        <RowDefinition Height="27"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Button Name="buttonSelectGenFolder" Content="Select Folder" Grid.Row="0" Grid.Column="0" Margin="1" Click="buttonSelectGenFolder_Click" IsEnabled="False"/>
                     <TextBox Name="tbGenFolderPath" Grid.Row="0" Grid.Column="1" Margin="1" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
-                    <TextBlock Text="Language : " Grid.Row="4" Grid.Column="0" Margin="1" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                    <TextBlock Text="Language : " Grid.Row="5" Grid.Column="0" Margin="1" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                     <TextBlock Text="Application Name : " Grid.Row="1" Grid.Column="0" Margin="1" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                     <TextBox Name="tbAppName" Text="My Project" Grid.Row="1" Grid.Column="1" Margin="1" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
                     <TextBlock Text="Namespace : " Grid.Row="2" Grid.Column="0" Margin="1" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                     <TextBox Name="tbNamespace" Text="My.Gen" Grid.Row="2" Grid.Column="1" Margin="1" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
-                    <Button Name="buttonSelectIoTFWPath" Content="IoT Framework Path" Margin="1" Grid.Row="3" IsEnabled="False" Click="buttonSelectIoTFWPath_Click" />
-                    <TextBox Name="tbIoTFWPath" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="1"/>
-                    <ComboBox Name="cbLanguage" Grid.Row="4" Grid.Column="1" Margin="1" SelectionChanged="cbLanguage_SelectionChanged" IsEnabled="False">
+                    <TextBlock Text="IoT Framework : " Grid.Row="3" Margin="1" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                    <CheckBox Name="cbUseIoTFWPackage" Content="Use NuGet Package" Grid.Row="3" Grid.Column="1" Margin="1" VerticalAlignment="Center" Checked="cbUseIoTFWPackage_Checked" Unchecked="cbUseIoTFWPackage_Checked" IsChecked="True" IsEnabled="False"/>
+                    <Button Name="buttonSelectIoTFWPath" Content="IoT Framework Path" Margin="1" Grid.Row="4" IsEnabled="False" Click="buttonSelectIoTFWPath_Click" />
+                    <TextBox Name="tbIoTFWPath" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="1"/>
+                    <ComboBox Name="cbLanguage" Grid.Row="5" Grid.Column="1" Margin="1" SelectionChanged="cbLanguage_SelectionChanged" IsEnabled="False">
                         <ComboBoxItem Content="C#"/>
                         <ComboBoxItem Content="C/C++"/>
                         <ComboBoxItem Content="Python"/>
                     </ComboBox>
-                    <TextBlock Text="Kind : " Grid.Row="5" Grid.Column="0" Margin="1" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-                    <ComboBox Name="cbGenKind" Grid.Row="5" Grid.Column="1" Margin="1" IsEnabled="False" SelectionChanged="cbGenKind_SelectionChanged">
+                    <TextBlock Text="Kind : " Grid.Row="6" Grid.Column="0" Margin="1" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                    <ComboBox Name="cbGenKind" Grid.Row="6" Grid.Column="1" Margin="1" IsEnabled="False" SelectionChanged="cbGenKind_SelectionChanged">
                     </ComboBox>
+                    <Button Name="buttonAddPackage" Content="Add Package" Margin="1" Grid.Row="7" Click="buttonAddPackage_Click"/>
+                    <TextBox Name="tbPackageName" Grid.Row="7" Grid.Column="1" Margin="1" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+                    <TextBox Name="tbImportPacakgeNames" Grid.Row="8" Grid.ColumnSpan="2" Margin="1" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
                 </Grid>
                 <Button Name="buttonGenerate" Content="Generate" Margin="1" Grid.Row="2" IsEnabled="False" Click="buttonGenerate_Click"/>
             </Grid>

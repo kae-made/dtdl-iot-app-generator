@@ -18,10 +18,10 @@ namespace Kae.IoT.PnP.Generator.Csharp
         protected static readonly string ServicePropertiesDirName = "Properties";
         protected static readonly string ServiceLaunchSettingsJsonFileName = "launchSettings.json";
 
-        public CsharpCodeGeneratorNonEdge(ExeType exeType, string appName, string iotFWProjectPath) : base(exeType, appName, iotFWProjectPath)
+        public CsharpCodeGeneratorNonEdge(ExeType exeType, string appName, string iotFWProjectPath, bool useNuGetForIoTFW, IList<string> importLibraries) : base(exeType, appName, iotFWProjectPath, useNuGetForIoTFW,importLibraries)
         {
         }
-        public CsharpCodeGeneratorNonEdge(ExeType exeType, string appName, string iotFWProjectPath, Logger logger) : base(exeType, appName, iotFWProjectPath, logger)
+        public CsharpCodeGeneratorNonEdge(ExeType exeType, string appName, string iotFWProjectPath, bool useNuGetForIoTFW, IList<string> importLibraries, Logger logger) : base(exeType, appName, iotFWProjectPath, useNuGetForIoTFW, importLibraries, logger)
         {
             this.factoryCreationMethod = "CreateIoTClientForDevice";
         }

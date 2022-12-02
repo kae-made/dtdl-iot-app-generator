@@ -45,15 +45,31 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="2.1.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.0" />
     <PackageReference Include="System.Runtime.Loader" Version="4.3.0" />
+<#
+            foreach (var ilib in importLibraries)
+            {
+                string[] lib = ilib.Split(new char[] { ';' });
+#>
+    <PackageReference Include="<#= lib[0] #>" Version="<#= lib[1] #>" />
+<#
+            }
+#>
   </ItemGroup>
 
 <#          }
             if (IsDeviceApp())
             { #>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Azure.Devices.Client" Version="1.40.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="YamlDotNet" Version="11.2.1" />
+<#
+            foreach (var ilib in importLibraries)
+            {
+                string[] lib = ilib.Split(new char[] { ';' });
+#>
+    <PackageReference Include="<#= lib[0] #>" Version="<#= lib[1] #>" />
+<#
+            }
+#>
   </ItemGroup>
 
 <#          }
@@ -66,10 +82,19 @@
     <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="5.0.1" />
     <PackageReference Include="System.Diagnostics.PerformanceCounter" Version="6.0.1" />
     <PackageReference Include="YamlDotNet" Version="11.2.1" />
+<#
+            foreach (var ilib in importLibraries)
+            {
+                string[] lib = ilib.Split(new char[] { ';' });
+#>
+    <PackageReference Include="<#= lib[0] #>" Version="<#= lib[1] #>" />
+<#
+            }
+#>
   </ItemGroup>
 
 <#          }
-            if (IsDeviceApp() || IsService())
+            if ((useNuGetForIoTFW == false) && (IsDeviceApp() || IsService()))
             { #>
   <ItemGroup>
     <Reference Include="Kae.IoT.Framework">
@@ -88,7 +113,7 @@
 <#            }
 #>
 <#
-            if (IsEdge())
+            if ((useNuGetForIoTFW == false) && IsEdge())
             { #>
   <ItemGroup>
     <Reference Include="Kae.IoT.Framework">
