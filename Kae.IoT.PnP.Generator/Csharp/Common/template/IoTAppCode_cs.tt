@@ -115,8 +115,8 @@ namespace <#= nameSpace #>
                 while (true)
                 {
                     // Samples
-                    lock (sensingData)
-                    {
+                    // lock (sensingData_XXX)
+                    // {
                         // implement sensing data update logic
                         // sensingData.Environment.Temperature = 27;
                         // sensingData.Environment.Humidity = 57.4;
@@ -124,8 +124,8 @@ namespace <#= nameSpace #>
                         // sensingData.Environment.CO2Concentration = 300;
                         // sensingData.Environment.Brightness = 739.2;
                         // sensingData.Environment.MeasuredTime = DateTime.Now;
-                    }
-                    await iotClient.UpdateD2CDataAsync(sensingData);
+                    // }
+                    // await iotClient.UpdateD2CDataAsync(sensingData);
                     await Task.Delay(updatingInterval);
                 }
             });

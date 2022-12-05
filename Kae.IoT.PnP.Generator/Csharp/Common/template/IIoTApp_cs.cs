@@ -119,8 +119,43 @@ namespace ");
             
             #line default
             #line hidden
+            this.Write("\r\n");
+            
+            #line 56 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IIoTApp_cs.tt"
+
+    foreach (var telemetryInfo in dtTelemetries.Values)
+    {
+        var telemetry = telemetryInfo.Info;
+        string telmetryDataTypeName = $"D2CData_{telemetry.Name}";
+        string getD2CDataMethodName = $"Get{telmetryDataTypeName}";
+
+            
+            #line default
+            #line hidden
+            this.Write("        ");
+            
+            #line 63 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IIoTApp_cs.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(telmetryDataTypeName));
+            
+            #line default
+            #line hidden
+            this.Write(" ");
+            
+            #line 63 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IIoTApp_cs.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(getD2CDataMethodName));
+            
+            #line default
+            #line hidden
+            this.Write("();\r\n");
+            
+            #line 64 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IIoTApp_cs.tt"
+
+    }
+
+            
+            #line default
+            #line hidden
             this.Write(@"
-        D2CData GetD2CData();
         Task ReceivedC2DDataAsync(Message data);
         Task UpdatedDTDesiredPropertiesAsync(AppDTDesiredProperties dp);
 

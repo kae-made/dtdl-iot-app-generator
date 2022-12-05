@@ -13,12 +13,14 @@ namespace Kae.IoT.PnP.Generator.Csharp.Common.template
     partial class IIoTApp_cs : IVersionedGenerator
     {
         private string nameSpace;
+        private IDictionary<string, GElemDTTelemetryInfo> dtTelemetries;
         private IDictionary<string, GElemDTCommandInfo> syncDirectMethods;
         private IDictionary<string, GElemDTCommandInfo> asyncDirectMethods;
 
-        public IIoTApp_cs(string nameSpace, IDictionary<string, GElemDTCommandInfo> syncDirectMethods, IDictionary<string, GElemDTCommandInfo> asyncDirectMethods)
+        public IIoTApp_cs(string nameSpace, IDictionary<string,GElemDTTelemetryInfo> telemetries, IDictionary<string, GElemDTCommandInfo> syncDirectMethods, IDictionary<string, GElemDTCommandInfo> asyncDirectMethods)
         {
             this.nameSpace = nameSpace;
+            this.dtTelemetries = telemetries;
             this.syncDirectMethods = syncDirectMethods;
             this.asyncDirectMethods = asyncDirectMethods;
         }

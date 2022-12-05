@@ -53,7 +53,18 @@ namespace <#= nameSpace #>
         }
 #>
 
-        D2CData GetD2CData();
+<#
+    foreach (var telemetryInfo in dtTelemetries.Values)
+    {
+        var telemetry = telemetryInfo.Info;
+        string telmetryDataTypeName = $"D2CData_{telemetry.Name}";
+        string getD2CDataMethodName = $"Get{telmetryDataTypeName}";
+#>
+        <#= telmetryDataTypeName #> <#= getD2CDataMethodName #>();
+<#
+    }
+#>
+
         Task ReceivedC2DDataAsync(Message data);
         Task UpdatedDTDesiredPropertiesAsync(AppDTDesiredProperties dp);
 

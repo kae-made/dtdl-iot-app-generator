@@ -163,19 +163,19 @@ namespace ");
                     "tedProperties);\r\n            var task = new Task(async () =>\r\n            {\r\n   " +
                     "             var rand = new Random(DateTime.Now.Millisecond);\r\n                v" +
                     "ar updatingInterval = TimeSpan.FromMilliseconds(1000);\r\n                while (t" +
-                    "rue)\r\n                {\r\n                    // Samples\r\n                    loc" +
-                    "k (sensingData)\r\n                    {\r\n                        // implement sen" +
-                    "sing data update logic\r\n                        // sensingData.Environment.Tempe" +
-                    "rature = 27;\r\n                        // sensingData.Environment.Humidity = 57.4" +
-                    ";\r\n                        // sensingData.Environment.AtmosphericPressure = 1003" +
-                    ".1;\r\n                        // sensingData.Environment.CO2Concentration = 300;\r" +
-                    "\n                        // sensingData.Environment.Brightness = 739.2;\r\n       " +
-                    "                 // sensingData.Environment.MeasuredTime = DateTime.Now;\r\n      " +
-                    "              }\r\n                    await iotClient.UpdateD2CDataAsync(sensingD" +
-                    "ata);\r\n                    await Task.Delay(updatingInterval);\r\n                " +
-                    "}\r\n            });\r\n            task.Start();\r\n            await iotClient.Start" +
-                    "SendD2CMessageAsync(TimeSpan.FromSeconds(10), cancellationTokenSource);\r\n       " +
-                    " }\r\n    }\r\n}\r\n");
+                    "rue)\r\n                {\r\n                    // Samples\r\n                    // " +
+                    "lock (sensingData_XXX)\r\n                    // {\r\n                        // imp" +
+                    "lement sensing data update logic\r\n                        // sensingData.Environ" +
+                    "ment.Temperature = 27;\r\n                        // sensingData.Environment.Humid" +
+                    "ity = 57.4;\r\n                        // sensingData.Environment.AtmosphericPress" +
+                    "ure = 1003.1;\r\n                        // sensingData.Environment.CO2Concentrati" +
+                    "on = 300;\r\n                        // sensingData.Environment.Brightness = 739.2" +
+                    ";\r\n                        // sensingData.Environment.MeasuredTime = DateTime.No" +
+                    "w;\r\n                    // }\r\n                    // await iotClient.UpdateD2CDa" +
+                    "taAsync(sensingData);\r\n                    await Task.Delay(updatingInterval);\r\n" +
+                    "                }\r\n            });\r\n            task.Start();\r\n            await" +
+                    " iotClient.StartSendD2CMessageAsync(TimeSpan.FromSeconds(10), cancellationTokenS" +
+                    "ource);\r\n        }\r\n    }\r\n}\r\n");
             return this.GenerationEnvironment.ToString();
         }
     }

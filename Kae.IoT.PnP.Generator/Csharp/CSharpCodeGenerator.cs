@@ -83,8 +83,8 @@ namespace Kae.IoT.PnP.Generator.Csharp
 
             await GenerateAppIoTDataCS(dtTelemetries, dtDesiredProperties, dtReporedProperties, dtSyncDirectMethods, dtAsyncDirectMethods);
 
-            await GenerateIIoTAppCS(dtSyncDirectMethods, dtAsyncDirectMethods);
-            await GenerateIoTAppCS(factoryCreationMethod);
+            await GenerateIIoTAppCS(dtTelemetries, dtSyncDirectMethods, dtAsyncDirectMethods);
+            await GenerateIoTAppCS(factoryCreationMethod, dtTelemetries);
             await GenerateIoTAppCodeCS(dtSyncDirectMethods, dtAsyncDirectMethods);
             await GenerateIoTAppConnectorCS(dtSyncDirectMethods, dtAsyncDirectMethods);
             await GenerateProgramCS();
@@ -293,16 +293,16 @@ namespace Kae.IoT.PnP.Generator.Csharp
             await WriteToFileAsync(AppIoTData_cs_FileName, codeContent);
         }
 
-        public async Task GenerateIIoTAppCS(IDictionary<string, GElemDTCommandInfo> syncDirectMethods, IDictionary<string, GElemDTCommandInfo> asyncDirectMethods)
+        public async Task GenerateIIoTAppCS(IDictionary<string, GElemDTTelemetryInfo> telemetries, IDictionary<string, GElemDTCommandInfo> syncDirectMethods, IDictionary<string, GElemDTCommandInfo> asyncDirectMethods)
         {
-            var generator = new IIoTApp_cs(NameSpace, syncDirectMethods, asyncDirectMethods) { Version = currentVersion };
+            var generator = new IIoTApp_cs(NameSpace,telemetries, syncDirectMethods, asyncDirectMethods) { Version = currentVersion };
             var codeContent = generator.TransformText();
             await WriteToFileAsync(IIoTApp_cs_FileName, codeContent);
         }
 
-        public async Task GenerateIoTAppCS(string factoryCreationMethodName)
+        public async Task GenerateIoTAppCS(string factoryCreationMethodName, IDictionary<string, GElemDTTelemetryInfo> telemetries)
         {
-            var generator = new IoTApp_cs(NameSpace, AppConnectorName, factoryCreationMethodName) { Version = currentVersion };
+            var generator = new IoTApp_cs(NameSpace, AppConnectorName, factoryCreationMethodName, telemetries) { Version = currentVersion };
             var codeContent = generator.TransformText();
             await WriteToFileAsync(IoTApp_cs_FileName, codeContent);
         }

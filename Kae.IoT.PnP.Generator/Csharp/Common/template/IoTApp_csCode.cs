@@ -14,12 +14,14 @@ namespace Kae.IoT.PnP.Generator.Csharp.Common.template
         private string nameSpace;
         private string appConnectorName;
         private string factoryCreationMethod;
+        private IDictionary<string, GElemDTTelemetryInfo> dtTelemetries;
 
-        public IoTApp_cs(string nameSpace, string appConnectorName, string factoryCreationMethod)
+        public IoTApp_cs(string nameSpace, string appConnectorName, string factoryCreationMethod, IDictionary<string, GElemDTTelemetryInfo> telemetries)
         {
             this.nameSpace = nameSpace;
             this.appConnectorName = appConnectorName;
             this.factoryCreationMethod = factoryCreationMethod;
+            this.dtTelemetries = telemetries;
         }
 
         public string Version { get; set; }

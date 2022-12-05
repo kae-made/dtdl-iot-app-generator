@@ -34,19 +34,41 @@ namespace <#= nameSpace #>
         private IoTClient iotClient;
 
         // Sensing Data can be stored in this variable
-        private D2CData sensingData;
+<#
+    foreach (var telemetryInfo in dtTelemetries.Values)
+    {
+        var telemetry = telemetryInfo.Info;
+        string telmetryDataTypeName = $"D2CData_{telemetry.Name}";
+        string telemetryMemberVarName = $"sensingData_{telemetry.Name}";
+        string getD2CDataMethodName = $"Get{telmetryDataTypeName}";
+#>
+        private <#= telmetryDataTypeName #> <#= telemetryMemberVarName #>;
+        public <#= telmetryDataTypeName #> <#= getD2CDataMethodName #>()
+        {
+            return <#= telemetryMemberVarName #>;
+        }
+
+<#
+    }
+#>
 
         private Logger logger;
 
         public IoTApp(Logger logger = null)
         {
             this.logger = logger;
-            sensingData = new D2CData();
-        }
 
-        public D2CData GetD2CData()
-        {
-            return sensingData;
+<#
+    foreach (var telemetryInfo in dtTelemetries.Values)
+    {
+        var telemetry = telemetryInfo.Info;
+        string telmetryDataTypeName = $"D2CData_{telemetry.Name}";
+        string telemetryMemberVarName = $"sensingData_{telemetry.Name}";
+#>
+            <#= telemetryMemberVarName #> = new <#= telmetryDataTypeName #>();
+<#
+    }
+#>
         }
 
         public async Task InitializeAsync(string configYamlFile)

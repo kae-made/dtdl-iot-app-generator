@@ -28,13 +28,17 @@ using System.Threading.Tasks;
 
 namespace <#= nameSpace #>
 {
-    class <#= d2cDataTypeName #> : Kae.IoT.Framework.IoTDataWithProperties
+<#
+    var objectTypeTelemetries = new List<(string typeName, string fieldName)>();
+    foreach (var telemetryInfo in dtTelemetries.Values)
+    {
+        var telemetry = telemetryInfo.Info;
+        string telmetryDataTypeName = $"{d2cDataTypeName}_{telemetry.Name}";
+#>
+    class <#= telmetryDataTypeName #> : Kae.IoT.Framework.IoTDataWithProperties
     {
 <# 
-    var objectTypeTelemetries = new List<(string typeName, string fieldName)>();
-    indent = "        ";
-    foreach (var telemetryInfo in dtTelemetries.Values) {
-        var telemetry = telemetryInfo.Info;
+        indent = "        ";
         var fieldDecl = CreateFieldDecl(indentUnit, indent, telemetry.Name, telemetry.Schema);
         var fieldDeclContent = fieldDecl.TransformText(); #>
 <#= fieldDeclContent #>
@@ -43,12 +47,11 @@ namespace <#= nameSpace #>
         {
             objectTypeTelemetries.Add((typeName:fieldDecl.DataTypeNameForObjectSchema, fieldName:fieldDecl.FieldNameForObjectSchema));
         }
-    }
 #>
 
-        public override <#= d2cDataTypeNameForDeserialize #> Deserialize(string json)
+        public override <#= telmetryDataTypeName #> Deserialize(string json)
         {
-            return (D2CData) Newtonsoft.Json.JsonConvert.DeserializeObject(json, typeof(D2CData));
+            return (<#= telmetryDataTypeName #>) Newtonsoft.Json.JsonConvert.DeserializeObject(json, typeof(<#= telmetryDataTypeName #>));
         }
 
         public override string Serialize()
@@ -61,7 +64,7 @@ namespace <#= nameSpace #>
         {
 #>
 
-        public <#= d2cDataTypeName #>()
+        public <#= telmetryDataTypeName #>()
         {
 <#
             foreach (var objFld in objectTypeTelemetries)
@@ -77,6 +80,9 @@ namespace <#= nameSpace #>
         }
 #>
     }
+<#
+    }
+#>
 
     class <#= dpDataTypeName #> : Kae.IoT.Framework.IoTData
     {
