@@ -193,7 +193,7 @@ namespace ");
 
         public override IoTDataWithProperties GetAppD2CData()
         {
-            return iotApp.GetD2CData();
+            return iotApp.GetAppD2CData();
         }
 
         public override Task NotifyE2DMessageAsync(Message msg, string inputPort)

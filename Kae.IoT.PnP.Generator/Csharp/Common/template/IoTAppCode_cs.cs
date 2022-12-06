@@ -58,11 +58,12 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Kae.IoT.Framework;
 using Microsoft.Azure.Devices.Client;
 
 namespace ");
             
-            #line 28 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IoTAppCode_cs.tt"
+            #line 29 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IoTAppCode_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(nameSpace));
             
             #line default
@@ -71,7 +72,7 @@ namespace ");
                     "ties DesiredProperties { get; set; }\r\n        public AppDTReporetedProperties Re" +
                     "portedProperties { get; set; }\r\n\r\n");
             
-            #line 35 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IoTAppCode_cs.tt"
+            #line 36 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IoTAppCode_cs.tt"
 
     foreach (var dmName in syncDirectMethods.Keys)
     {
@@ -81,7 +82,7 @@ namespace ");
             #line hidden
             this.Write("        public string ");
             
-            #line 39 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IoTAppCode_cs.tt"
+            #line 40 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IoTAppCode_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dmName));
             
             #line default
@@ -89,7 +90,7 @@ namespace ");
             this.Write("(string payload)\r\n        {\r\n            string result = \"\";\r\n            Console" +
                     ".WriteLine($\"Invoked \'");
             
-            #line 42 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IoTAppCode_cs.tt"
+            #line 43 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IoTAppCode_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dmName));
             
             #line default
@@ -97,7 +98,7 @@ namespace ");
             this.Write("\' with \'{payload}\'\");\r\n            // TODO: implement direct method logic \r\n     " +
                     "       return result;\r\n        }\r\n\r\n");
             
-            #line 47 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IoTAppCode_cs.tt"
+            #line 48 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IoTAppCode_cs.tt"
 
     }
 
@@ -106,7 +107,7 @@ namespace ");
             #line hidden
             this.Write("\r\n");
             
-            #line 51 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IoTAppCode_cs.tt"
+            #line 52 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IoTAppCode_cs.tt"
  
         foreach (var dmName in asyncDirectMethods.Keys)
         {
@@ -116,7 +117,7 @@ namespace ");
             #line hidden
             this.Write("        public string ");
             
-            #line 55 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IoTAppCode_cs.tt"
+            #line 56 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IoTAppCode_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dmName));
             
             #line default
@@ -124,7 +125,7 @@ namespace ");
             this.Write("(string payload)\r\n        {\r\n            string result = \"\";\r\n            Console" +
                     ".WriteLine($\"Invoked \'");
             
-            #line 58 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IoTAppCode_cs.tt"
+            #line 59 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IoTAppCode_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dmName));
             
             #line default
@@ -132,50 +133,52 @@ namespace ");
             this.Write("\' with \'{payload}\'\");\r\n            // TODO: implement direct method logic \r\n     " +
                     "       return result;\r\n        }\r\n\r\n\r\n");
             
-            #line 64 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IoTAppCode_cs.tt"
+            #line 65 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IoTAppCode_cs.tt"
  
         }
 
             
             #line default
             #line hidden
-            this.Write("\r\n        public async Task ReceivedC2DDataAsync(Message message)\r\n        {\r\n   " +
-                    "         Console.WriteLine($\"Received C2D - {System.Text.Encoding.UTF8.GetString" +
-                    "(message.GetBytes())}\");\r\n            if (message.Properties.Count > 0) {\r\n     " +
-                    "           Console.WriteLine(\"  properties...\");\r\n                foreach (var p" +
-                    "rop in message.Properties)\r\n                {\r\n                    Console.Write" +
-                    "Line($\"  {prop.Key}:{prop.Value}\");\r\n                }\r\n            }\r\n         " +
-                    "   // TODO: implment logic when message is received from clou\r\n        }\r\n\r\n    " +
-                    "    public async Task UpdatedDTDesiredPropertiesAsync(AppDTDesiredProperties dp)" +
-                    "\r\n        {\r\n            Console.WriteLine($\"Updated DT Desired Props - {Desired" +
-                    "Properties.Serialize()}\");\r\n            // TODO: implment reconfiguration logic " +
-                    "with updated desired properties\r\n        }\r\n\r\n        public async Task UserPreI" +
-                    "nitializeAsync()\r\n        {\r\n            // TODO: impliment initialization logic" +
-                    " before connecting to IoT Hub\r\n        }\r\n\r\n        public async Task UserPostIn" +
-                    "itializeAsync()\r\n        {\r\n            // TODO: implement initialization logic " +
-                    "after connected to IoT Hub\r\n        }\r\n\r\n        public async Task UserPreTermin" +
-                    "ateAsync()\r\n        {\r\n            // TODO: implement termination logic before d" +
-                    "isconnecting from IoT Hub\r\n        }\r\n\r\n        public async Task UserPostTermin" +
-                    "ateAsync()\r\n        {\r\n            // TODO: implement termination logic after di" +
-                    "sconnected from IoT Hub\r\n        }\r\n\r\n        public async Task DoWorkAsync(Canc" +
-                    "ellationTokenSource cancellationTokenSource)\r\n        {\r\n            // Sample L" +
-                    "ogic\r\n            await iotClient.UpdateDeviceTwinsReportedPropertiesAsync(Repor" +
-                    "tedProperties);\r\n            var task = new Task(async () =>\r\n            {\r\n   " +
-                    "             var rand = new Random(DateTime.Now.Millisecond);\r\n                v" +
-                    "ar updatingInterval = TimeSpan.FromMilliseconds(1000);\r\n                while (t" +
-                    "rue)\r\n                {\r\n                    // Samples\r\n                    // " +
-                    "lock (sensingData_XXX)\r\n                    // {\r\n                        // imp" +
-                    "lement sensing data update logic\r\n                        // sensingData.Environ" +
-                    "ment.Temperature = 27;\r\n                        // sensingData.Environment.Humid" +
-                    "ity = 57.4;\r\n                        // sensingData.Environment.AtmosphericPress" +
-                    "ure = 1003.1;\r\n                        // sensingData.Environment.CO2Concentrati" +
-                    "on = 300;\r\n                        // sensingData.Environment.Brightness = 739.2" +
-                    ";\r\n                        // sensingData.Environment.MeasuredTime = DateTime.No" +
-                    "w;\r\n                    // }\r\n                    // await iotClient.UpdateD2CDa" +
-                    "taAsync(sensingData);\r\n                    await Task.Delay(updatingInterval);\r\n" +
-                    "                }\r\n            });\r\n            task.Start();\r\n            await" +
-                    " iotClient.StartSendD2CMessageAsync(TimeSpan.FromSeconds(10), cancellationTokenS" +
-                    "ource);\r\n        }\r\n    }\r\n}\r\n");
+            this.Write("\r\n        public IoTDataWithProperties GetAppD2CData()\r\n        {\r\n            th" +
+                    "row new NotImplementedException();\r\n            // TODO: return appropriate d2c " +
+                    "data\r\n        }\r\n\r\n        public async Task ReceivedC2DDataAsync(Message messag" +
+                    "e)\r\n        {\r\n            Console.WriteLine($\"Received C2D - {System.Text.Encod" +
+                    "ing.UTF8.GetString(message.GetBytes())}\");\r\n            if (message.Properties.C" +
+                    "ount > 0) {\r\n                Console.WriteLine(\"  properties...\");\r\n            " +
+                    "    foreach (var prop in message.Properties)\r\n                {\r\n               " +
+                    "     Console.WriteLine($\"  {prop.Key}:{prop.Value}\");\r\n                }\r\n      " +
+                    "      }\r\n            // TODO: implment logic when message is received from clou\r" +
+                    "\n        }\r\n\r\n        public async Task UpdatedDTDesiredPropertiesAsync(AppDTDes" +
+                    "iredProperties dp)\r\n        {\r\n            Console.WriteLine($\"Updated DT Desire" +
+                    "d Props - {DesiredProperties.Serialize()}\");\r\n            // TODO: implment reco" +
+                    "nfiguration logic with updated desired properties\r\n        }\r\n\r\n        public a" +
+                    "sync Task UserPreInitializeAsync()\r\n        {\r\n            // TODO: impliment in" +
+                    "itialization logic before connecting to IoT Hub\r\n        }\r\n\r\n        public asy" +
+                    "nc Task UserPostInitializeAsync()\r\n        {\r\n            // TODO: implement ini" +
+                    "tialization logic after connected to IoT Hub\r\n        }\r\n\r\n        public async " +
+                    "Task UserPreTerminateAsync()\r\n        {\r\n            // TODO: implement terminat" +
+                    "ion logic before disconnecting from IoT Hub\r\n        }\r\n\r\n        public async T" +
+                    "ask UserPostTerminateAsync()\r\n        {\r\n            // TODO: implement terminat" +
+                    "ion logic after disconnected from IoT Hub\r\n        }\r\n\r\n        public async Tas" +
+                    "k DoWorkAsync(CancellationTokenSource cancellationTokenSource)\r\n        {\r\n     " +
+                    "       // Sample Logic\r\n            await iotClient.UpdateDeviceTwinsReportedPro" +
+                    "pertiesAsync(ReportedProperties);\r\n            var task = new Task(async () =>\r\n" +
+                    "            {\r\n                var rand = new Random(DateTime.Now.Millisecond);\r" +
+                    "\n                var updatingInterval = TimeSpan.FromMilliseconds(1000);\r\n      " +
+                    "          while (true)\r\n                {\r\n                    // Samples\r\n     " +
+                    "               // lock (sensingData_XXX)\r\n                    // {\r\n            " +
+                    "            // implement sensing data update logic\r\n                        // s" +
+                    "ensingData.Environment.Temperature = 27;\r\n                        // sensingData" +
+                    ".Environment.Humidity = 57.4;\r\n                        // sensingData.Environmen" +
+                    "t.AtmosphericPressure = 1003.1;\r\n                        // sensingData.Environm" +
+                    "ent.CO2Concentration = 300;\r\n                        // sensingData.Environment." +
+                    "Brightness = 739.2;\r\n                        // sensingData.Environment.Measured" +
+                    "Time = DateTime.Now;\r\n                    // }\r\n                    // await iot" +
+                    "Client.UpdateD2CDataAsync(sensingData);\r\n                    await Task.Delay(up" +
+                    "datingInterval);\r\n                }\r\n            });\r\n            task.Start();\r" +
+                    "\n            await iotClient.StartSendD2CMessageAsync(TimeSpan.FromSeconds(10), " +
+                    "cancellationTokenSource);\r\n        }\r\n    }\r\n}\r\n");
             return this.GenerationEnvironment.ToString();
         }
     }

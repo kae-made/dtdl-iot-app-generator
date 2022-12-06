@@ -58,11 +58,12 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Kae.IoT.Framework;
 using Microsoft.Azure.Devices.Client;
 
 namespace ");
             
-            #line 28 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IIoTApp_cs.tt"
+            #line 29 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IIoTApp_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(nameSpace));
             
             #line default
@@ -71,7 +72,7 @@ namespace ");
                     "es\r\n        {\r\n            get;\r\n            set;\r\n        }\r\n\r\n        Task DoW" +
                     "orkAsync(CancellationTokenSource cancellationTokenSource);\r\n\r\n");
             
-            #line 40 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IIoTApp_cs.tt"
+            #line 41 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IIoTApp_cs.tt"
  
         foreach (var dmName in syncDirectMethods.Keys) {
 
@@ -80,14 +81,14 @@ namespace ");
             #line hidden
             this.Write("        string ");
             
-            #line 43 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IIoTApp_cs.tt"
+            #line 44 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IIoTApp_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dmName));
             
             #line default
             #line hidden
             this.Write("(string payload);\r\n");
             
-            #line 44 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IIoTApp_cs.tt"
+            #line 45 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IIoTApp_cs.tt"
  
         }
 
@@ -96,7 +97,7 @@ namespace ");
             #line hidden
             this.Write("\r\n");
             
-            #line 48 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IIoTApp_cs.tt"
+            #line 49 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IIoTApp_cs.tt"
  
         foreach (var dmName in asyncDirectMethods.Keys) {
 
@@ -105,23 +106,23 @@ namespace ");
             #line hidden
             this.Write("        string ");
             
-            #line 51 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IIoTApp_cs.tt"
+            #line 52 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IIoTApp_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dmName));
             
             #line default
             #line hidden
             this.Write("(string payload);\r\n");
             
-            #line 52 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IIoTApp_cs.tt"
+            #line 53 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IIoTApp_cs.tt"
  
         }
 
             
             #line default
             #line hidden
-            this.Write("\r\n");
+            this.Write("\r\n        IoTDataWithProperties GetAppD2CData();\r\n\r\n");
             
-            #line 56 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IIoTApp_cs.tt"
+            #line 59 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IIoTApp_cs.tt"
 
     foreach (var telemetryInfo in dtTelemetries.Values)
     {
@@ -134,21 +135,21 @@ namespace ");
             #line hidden
             this.Write("        ");
             
-            #line 63 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IIoTApp_cs.tt"
+            #line 66 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IIoTApp_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(telmetryDataTypeName));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 63 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IIoTApp_cs.tt"
+            #line 66 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IIoTApp_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(getD2CDataMethodName));
             
             #line default
             #line hidden
             this.Write("();\r\n");
             
-            #line 64 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IIoTApp_cs.tt"
+            #line 67 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\IIoTApp_cs.tt"
 
     }
 

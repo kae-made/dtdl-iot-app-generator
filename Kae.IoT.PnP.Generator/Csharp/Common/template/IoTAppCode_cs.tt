@@ -23,6 +23,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Kae.IoT.Framework;
 using Microsoft.Azure.Devices.Client;
 
 namespace <#= nameSpace #>
@@ -64,6 +65,12 @@ namespace <#= nameSpace #>
 <# 
         }
 #>
+
+        public IoTDataWithProperties GetAppD2CData()
+        {
+            throw new NotImplementedException();
+            // TODO: return appropriate d2c data
+        }
 
         public async Task ReceivedC2DDataAsync(Message message)
         {
