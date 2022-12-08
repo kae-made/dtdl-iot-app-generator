@@ -154,7 +154,7 @@ namespace Kae.IoT.Tools.IoTAppGenerator
             var importLibraries = new List<string>();
             if (useNuGetIoTFW)
             {
-                importLibraries.Add("Kae.IoT.Framework;1.2.0");
+                importLibraries.Add("Kae.IoT.Framework;1.3.0");
             }
             if (!string.IsNullOrEmpty(tbImportPacakgeNames.Text))
             {
