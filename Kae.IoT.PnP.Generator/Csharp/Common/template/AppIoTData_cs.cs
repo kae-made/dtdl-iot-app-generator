@@ -60,17 +60,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Converters;
 
 namespace ");
             
-            #line 29 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 30 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(nameSpace));
             
             #line default
             #line hidden
             this.Write("\r\n{\r\n");
             
-            #line 31 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 32 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
 
     var objectTypeTelemetries = new List<(string typeName, string fieldName)>();
     foreach (var telemetryInfo in dtTelemetries.Values)
@@ -83,14 +84,14 @@ namespace ");
             #line hidden
             this.Write("    class ");
             
-            #line 38 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 39 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(telmetryDataTypeName));
             
             #line default
             #line hidden
             this.Write(" : Kae.IoT.Framework.IoTDataWithProperties\r\n    {\r\n");
             
-            #line 40 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 41 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
  
         indent = "        ";
         var fieldDecl = CreateFieldDecl(indentUnit, indent, telemetry.Name, telemetry.Schema);
@@ -99,14 +100,14 @@ namespace ");
             #line default
             #line hidden
             
-            #line 44 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 45 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(fieldDeclContent));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 45 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 46 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
 
         if (fieldDecl.IsObjectSchema)
         {
@@ -118,21 +119,21 @@ namespace ");
             #line hidden
             this.Write("\r\n        public override ");
             
-            #line 52 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 53 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(telmetryDataTypeName));
             
             #line default
             #line hidden
             this.Write(" Deserialize(string json)\r\n        {\r\n            return (");
             
-            #line 54 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 55 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(telmetryDataTypeName));
             
             #line default
             #line hidden
             this.Write(") Newtonsoft.Json.JsonConvert.DeserializeObject(json, typeof(");
             
-            #line 54 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 55 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(telmetryDataTypeName));
             
             #line default
@@ -141,7 +142,7 @@ namespace ");
                     "    var content = Newtonsoft.Json.JsonConvert.SerializeObject(this);\r\n          " +
                     "  return content;\r\n        }\r\n");
             
-            #line 62 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 63 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
 
         if (objectTypeTelemetries.Count > 0)
         {
@@ -151,14 +152,14 @@ namespace ");
             #line hidden
             this.Write("\r\n        public ");
             
-            #line 67 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 68 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(telmetryDataTypeName));
             
             #line default
             #line hidden
             this.Write("()\r\n        {\r\n");
             
-            #line 69 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 70 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
 
             foreach (var objFld in objectTypeTelemetries)
             {
@@ -168,21 +169,21 @@ namespace ");
             #line hidden
             this.Write("            this.");
             
-            #line 73 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 74 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(objFld.fieldName));
             
             #line default
             #line hidden
             this.Write(" = new ");
             
-            #line 73 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 74 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(objFld.typeName));
             
             #line default
             #line hidden
             this.Write("();\r\n");
             
-            #line 74 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 75 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
 
             }
             objectTypeTelemetries.Clear();
@@ -192,7 +193,7 @@ namespace ");
             #line hidden
             this.Write("        }\r\n");
             
-            #line 79 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 80 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
 
         }
 
@@ -201,7 +202,7 @@ namespace ");
             #line hidden
             this.Write("    }\r\n");
             
-            #line 83 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 84 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
 
     }
 
@@ -210,14 +211,14 @@ namespace ");
             #line hidden
             this.Write("\r\n    class ");
             
-            #line 87 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 88 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dpDataTypeName));
             
             #line default
             #line hidden
             this.Write(" : Kae.IoT.Framework.IoTData\r\n    {\r\n");
             
-            #line 89 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 90 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
 
     foreach (var propInfo in dtDesiredProperties.Values) {
         var prop = propInfo.Info;
@@ -227,14 +228,14 @@ namespace ");
             #line default
             #line hidden
             
-            #line 94 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 95 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(fieldDeclContent));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 95 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 96 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
 
         if (fieldDecl.IsObjectSchema)
         {
@@ -247,7 +248,7 @@ namespace ");
             #line hidden
             this.Write("\r\n        public override ");
             
-            #line 103 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 104 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dpDataTypeNameForDeserialize));
             
             #line default
@@ -259,12 +260,12 @@ namespace ");
 
         public override string Serialize()
         {
-            var content = Newtonsoft.Json.JsonConvert.SerializeObject(this);
+            var content = Newtonsoft.Json.JsonConvert.SerializeObject(this, new StringEnumConverter());
             return content;
         }
 ");
             
-            #line 113 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 114 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
 
         if (objectTypeTelemetries.Count > 0)
         {
@@ -274,14 +275,14 @@ namespace ");
             #line hidden
             this.Write("\r\n        public ");
             
-            #line 118 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 119 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dpDataTypeName));
             
             #line default
             #line hidden
             this.Write("()\r\n        {\r\n");
             
-            #line 120 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 121 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
 
             foreach (var objFld in objectTypeTelemetries)
             {
@@ -291,21 +292,21 @@ namespace ");
             #line hidden
             this.Write("            this.");
             
-            #line 124 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 125 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(objFld.fieldName));
             
             #line default
             #line hidden
             this.Write(" = new ");
             
-            #line 124 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 125 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(objFld.typeName));
             
             #line default
             #line hidden
             this.Write("();\r\n");
             
-            #line 125 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 126 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
 
             }
             objectTypeTelemetries.Clear();
@@ -315,7 +316,7 @@ namespace ");
             #line hidden
             this.Write("        }\r\n");
             
-            #line 130 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 131 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
 
         }
 
@@ -324,14 +325,14 @@ namespace ");
             #line hidden
             this.Write("    }\r\n\r\n    class ");
             
-            #line 135 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 136 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(rpDataTypeName));
             
             #line default
             #line hidden
             this.Write(" : Kae.IoT.Framework.IoTData\r\n    {\r\n");
             
-            #line 137 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 138 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
 
     foreach (var propInfo in dtReporedProperties.Values) {
         var prop = propInfo.Info;
@@ -341,14 +342,14 @@ namespace ");
             #line default
             #line hidden
             
-            #line 142 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 143 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(fieldDeclContent));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 143 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 144 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
 
         if (fieldDecl.IsObjectSchema)
         {
@@ -361,7 +362,7 @@ namespace ");
             #line hidden
             this.Write("\r\n        public override ");
             
-            #line 151 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 152 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(rpDataTypeNameForDeserialize));
             
             #line default
@@ -373,12 +374,12 @@ namespace ");
 
         public override string Serialize()
         {
-            var content = Newtonsoft.Json.JsonConvert.SerializeObject(this);
+            var content = Newtonsoft.Json.JsonConvert.SerializeObject(this, new StringEnumConverter());
             return content;
         }
 ");
             
-            #line 161 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 162 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
 
         if (objectTypeTelemetries.Count > 0)
         {
@@ -388,14 +389,14 @@ namespace ");
             #line hidden
             this.Write("\r\n        public ");
             
-            #line 166 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 167 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dpDataTypeName));
             
             #line default
             #line hidden
             this.Write("()\r\n        {\r\n");
             
-            #line 168 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 169 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
 
             foreach (var objFld in objectTypeTelemetries)
             {
@@ -405,21 +406,21 @@ namespace ");
             #line hidden
             this.Write("            this.");
             
-            #line 172 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 173 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(objFld.fieldName));
             
             #line default
             #line hidden
             this.Write(" = new ");
             
-            #line 172 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 173 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(objFld.typeName));
             
             #line default
             #line hidden
             this.Write("();\r\n");
             
-            #line 173 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 174 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
 
             }
             objectTypeTelemetries.Clear();
@@ -429,7 +430,7 @@ namespace ");
             #line hidden
             this.Write("        }\r\n");
             
-            #line 178 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 179 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
 
         }
 
@@ -438,7 +439,7 @@ namespace ");
             #line hidden
             this.Write("    }\r\n\r\n");
             
-            #line 183 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 184 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
 
     foreach (var dmsyncInfo in dtSyncDirectMethods.Values)
     {
@@ -464,28 +465,28 @@ namespace ");
             #line hidden
             this.Write("public class ");
             
-            #line 203 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 204 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(parentTypeName));
             
             #line default
             #line hidden
             this.Write(" {\r\n");
             
-            #line 204 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 205 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
           if (!string.IsNullOrEmpty(genRequest))
             { 
             
             #line default
             #line hidden
             
-            #line 206 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 207 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(genRequest));
             
             #line default
             #line hidden
             this.Write("          \r\n");
             
-            #line 207 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 208 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
           }
             if (!string.IsNullOrEmpty(genResponse))
             { 
@@ -493,21 +494,21 @@ namespace ");
             #line default
             #line hidden
             
-            #line 210 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 211 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(genResponse));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 211 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 212 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
           } 
             
             #line default
             #line hidden
             this.Write("}\r\n");
             
-            #line 213 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
+            #line 214 "C:\Users\kae-m\source\repos\DTDLIoTPnPIoTAppGeneratorEnv\Kae.IoT.PnP.Generator\Csharp\Common\template\AppIoTData_cs.tt"
       }
     }
 
