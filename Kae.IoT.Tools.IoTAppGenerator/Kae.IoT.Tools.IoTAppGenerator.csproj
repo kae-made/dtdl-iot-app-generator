@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Kae.Utility.Logging" Version="1.0.0" />
+    <PackageReference Include="Kae.Utility.Logging" Version="1.3.0" />
     <PackageReference Include="Microsoft-Windows10-APICodePack-Core" Version="1.1.8" />
     <PackageReference Include="Microsoft-Windows10-APICodePack-Shell" Version="1.1.8" />
   </ItemGroup>
